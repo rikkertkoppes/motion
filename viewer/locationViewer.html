@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Locationviewer</title>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <style type="text/css">
+    .ring {
+        width: 400px;
+        height: 200px;
+        border: 2px solid black;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+    }
+    .rider {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 100%;
+        background-color: blue;
+    }
+    </style>
+</head>
+<body ng-app="motion" ng-controller="viewController as view">
+    <div class="ring">
+        <div class="rider" ng-style="view.riderStyle()"></div>
+    </div>
+<script>
+angular.module('motion',[]).controller('viewController',
+    function($scope, $timeout) {
+        var ctrl = this;
+        this.connected = false;
+        var backoff = 100;
+        var maxBackoff = 5000;
+        var pendingConnection;
+
+        function initWebsocket(config) {
+            var ws;
+            if (config.host) {
+                if (pendingConnection) {
+                    $timeout.cancel(pendingConnection);
+                }
+                ws = new WebSocket(config.host);
+
+                ws.onopen = function() {
+                    if (config.node) {
+                        ws.send(JSON.stringify({
+                            type: "subscribe",
+                            node: config.node
+                        }));
+                        ctrl.connected = true;
+                        backoff = 100;
+                    }
+                    $scope.$digest();
+                };
+                ws.onerror = function(e){
+                    console.log("error");
+                    ws.close();
+                };
+                ws.onclose = function() {
+                    console.log("close reconnecting in",backoff,'ms');
+                    ctrl.connected = false;
+                    $scope.$digest();
+                    pendingConnection = $timeout(ctrl.connect,backoff);
+                    backoff = Math.min(maxBackoff,backoff * 2);
+                };
+                ws.onmessage = function(msg) {
+                    var data = JSON.parse(msg.data);
+                    if (data.topic) {
+                        ctrl.process(data);
+                    }
+                    $scope.$digest();
+                };
+            }
+
+            return ws;
+        }
+        ctrl.connect = function() {
+            ctrl.ws = initWebsocket({
+                host: 'ws://192.168.1.180:13900',
+                node: 'test'
+            });
+        };
+
+        var buffer = [];
+        var bufferLength = 5;
+
+        ctrl.process = function(msg) {
+            if (msg.data instanceof Array) {
+            console.log(msg.data);
+                buffer.push(msg.data);
+                if (buffer.length > bufferLength) {
+                    buffer.shift();
+                }
+            }
+        }
+
+        ctrl.riderStyle = function() {
+            var avg = buffer.reduce(function(avg, pos) {
+                avg[0] += pos[0]/buffer.length;
+                avg[1] += pos[1]/buffer.length;
+                return avg;
+            }, [0,0]);
+            return {
+                left: avg[0] +'px',
+                top: avg[1] +'px'
+            }
+        }
+
+        ctrl.connect();
+        console.log('ctrl');
+    }
+)
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+	"port": 13900,
+	"nodes": ["default", "test", "motion"],
+	"bindings": [
+		{ "from": "default", "to": "test", "pattern": "test:*" }
+	]
+}
