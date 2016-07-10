@@ -79,7 +79,8 @@ def onresult(ws, p):
     ws.send('{"type":"publish","node":"test","topic":"location","data":['+str(p[0])+','+str(p[1])+']}')
 
 def run(ws):
-    cap = cv2.VideoCapture(0)
+    # cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture('../samples/1.mp4')
     lastFrame = None
     cv2.namedWindow("frame", 1);
     cv2.setMouseCallback("frame", onclick)
