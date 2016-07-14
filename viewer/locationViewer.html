@@ -83,13 +83,33 @@ angular.module('motion',[]).controller('viewController',
             });
         };
 
+        //return squared distance between two points (for sorting)
+        function distance2(p1,p2) {
+            var dx = p1[0]-p2[0];
+            var dy = p1[1]-p2[1];
+            return dx*dx + dy*dy;
+        }
+
         var buffer = [];
-        var bufferLength = 5;
+        var bufferLength = 20;
 
         ctrl.process = function(msg) {
+            var lastPoint = buffer[buffer.length-1];
             if (msg.data instanceof Array) {
-            console.log(msg.data);
-                buffer.push(msg.data);
+                //pick the point closest to the last point
+                var point = msg.data[0];
+                if (buffer.length) {
+                    var sorted = msg.data.sort(function(a,b) {
+                        var da = distance2(a,lastPoint);
+                        var db = distance2(b,lastPoint);
+                        if (da === db) {return 0;}
+                        return (da < db)? -1: 1;
+                    });
+                    console.log(sorted);
+                    point = sorted[0];
+                }
+                console.log(point);
+                buffer.push(point);
                 if (buffer.length > bufferLength) {
                     buffer.shift();
                 }

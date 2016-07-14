@@ -14,6 +14,7 @@ import cv2
 import numpy as np
 import itertools
 import websocket
+import json
 
 # ws = None
 ws = websocket.WebSocket()
@@ -44,22 +45,31 @@ ws.on_open = on_open
 
 #manually setting ring boundaries
 rect = [[380,1400],[-10,95],[260,90],[830,230]]
+rect = [[380,1370],[-10,75],[260,60],[830,200]]
 M = cv2.getPerspectiveTransform(np.array(rect,np.float32), np.array([[0,0],[400,0],[400,200],[0,200]],np.float32))
+
 
 # bounding rect of all contours -> cluster
 def findRects(contours):
+    print len(contours)
     rects = [cv2.boundingRect(ctr) for ctr in contours]
-    result = [1000,1000,0,0]
-    for rect in rects:
-        result[0] = min(result[0],rect[0])
-        result[1] = min(result[1],rect[1])
-        result[2] = max(result[2],rect[0]+rect[2])
-        result[3] = max(result[3],rect[1]+rect[3])
+    return [((r[0],r[1]),(r[0]+r[2],r[1]+r[3])) for r in rects]
+    # result = [(1000,1000),(0,0)]
+    # for rect in rects:
+    #     result[0] = (min(result[0][0],rect[0]), min(result[0][1],rect[1]))
+    #     result[1] = (max(result[1][0],rect[0]+rect[2]), max(result[1][1],rect[1]+rect[3]))
 
-    return [[(result[0],result[1]),(result[2],result[3])]]
+    # return [result]
 
-def bottom(p1,p2):
+# bottom of a rect
+def bottom(rect):
+    (p1,p2) = rect
     return ((p1[0]+p2[0])/2, max(p1[1],p2[1]))
+
+# center of a rect ((x1,y1),(x2,y2)) => (cx,cy)
+def center(rect):
+    (p1,p2) = rect
+    return ((p1[0]+p2[0])/2,(p1[1]+p2[1])/2)
 
 #define perspective area we need to transform to
 def onclick(event,x,y,flags,param):
@@ -77,13 +87,19 @@ def onclick(event,x,y,flags,param):
         M = cv2.getPerspectiveTransform(np.array(rect,np.float32), np.array([[0,0],[400,0],[400,200],[0,200]],np.float32));
         # print M
 
-def onresult(ws, p):
-    print p[0], p[1]
-    ws.send('{"type":"publish","node":"test","topic":"location","data":['+str(p[0])+','+str(p[1])+']}')
+def onresult(ws, points):
+    print json.dumps(points)
+    ws.send('{"type":"publish","node":"test","topic":"location","data":'+json.dumps(points)+'}')
+
+def transformPoint(matrix, point):
+    r = np.dot(M, [point[0],point[1],1])
+    return [r[0]/r[2], r[1]/r[2]]
+
 
 def run(ws):
     # cap = cv2.VideoCapture(0)
-    cap = cv2.VideoCapture('../samples/1.mp4')
+    # cap = cv2.VideoCapture('../samples/F3 Jill van Hall.mp4')
+    cap = cv2.VideoCapture('../samples/F3 Lois van de Velden.mp4')
     lastFrame = None
     cv2.namedWindow("frame", 1);
     cv2.setMouseCallback("frame", onclick)
@@ -98,20 +114,22 @@ def run(ws):
         if lastFrame is not None:
             frameDelta = cv2.absdiff(lastFrame, gray)
             thresh = cv2.threshold(frameDelta, 10, 255, cv2.THRESH_BINARY)[1]
-            thresh = cv2.dilate(thresh, None, iterations=2)
+            thresh = cv2.dilate(thresh, None, iterations=8)
             contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
             if len(contours) > 0:
-                (p1, p2) = findRects(contours)[0]
-                p3 = bottom(p1,p2)
-                cv2.rectangle(img, p1, p2, (0,255,0), 2)
-                cv2.circle(img, p3, 4, (255,0,0), -1)
+                rects = findRects(contours)
+                bottoms = [bottom(r) for r in rects]
+                for r in rects:
+                    (p1, p2) = r
+                    p3 = bottom((p1,p2))
+                    cv2.rectangle(img, p1, p2, (0,255,0), 2)
+                    cv2.circle(img, p3, 4, (255,0,0), -1)
+                if M is not None:
+                    onresult(ws, [transformPoint(M,p) for p in bottoms])
 
             if M is not None:
                 trans = cv2.warpPerspective(img,M,(400,200))
                 cv2.imshow('trans',trans)
-                if p3 is not None:
-                    r3 = np.dot(M, [p3[0],p3[1],1])
-                    onresult(ws,[r3[0]/r3[2], r3[1]/r3[2]])
 
             if len(rect) > 1:
                 cv2.polylines(img, np.array([rect]), True, (0,255,0), 2)
