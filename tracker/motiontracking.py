@@ -17,7 +17,8 @@ import websocket
 
 # ws = None
 ws = websocket.WebSocket()
-ws.connect("ws://192.168.1.180:13900")
+# ws.connect("ws://192.168.1.180:13900")
+ws.connect("ws://localhost:13900")
 
 def on_message(ws, message):
     print message
@@ -41,10 +42,12 @@ ws.on_message = on_message
 ws.on_open = on_open
 # ws.run_forever()
 
-rect = []
-M = None
+#manually setting ring boundaries
+rect = [[380,1400],[-10,95],[260,90],[830,230]]
+M = cv2.getPerspectiveTransform(np.array(rect,np.float32), np.array([[0,0],[400,0],[400,200],[0,200]],np.float32))
 
-def findRect(contours):
+# bounding rect of all contours -> cluster
+def findRects(contours):
     rects = [cv2.boundingRect(ctr) for ctr in contours]
     result = [1000,1000,0,0]
     for rect in rects:
@@ -53,7 +56,7 @@ def findRect(contours):
         result[2] = max(result[2],rect[0]+rect[2])
         result[3] = max(result[3],rect[1]+rect[3])
 
-    return (result[0],result[1]),(result[2],result[3])
+    return [[(result[0],result[1]),(result[2],result[3])]]
 
 def bottom(p1,p2):
     return ((p1[0]+p2[0])/2, max(p1[1],p2[1]))
@@ -98,7 +101,7 @@ def run(ws):
             thresh = cv2.dilate(thresh, None, iterations=2)
             contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
             if len(contours) > 0:
-                p1, p2 = findRect(contours)
+                (p1, p2) = findRects(contours)[0]
                 p3 = bottom(p1,p2)
                 cv2.rectangle(img, p1, p2, (0,255,0), 2)
                 cv2.circle(img, p3, 4, (255,0,0), -1)

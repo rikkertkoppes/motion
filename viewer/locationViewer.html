@@ -77,7 +77,8 @@ angular.module('motion',[]).controller('viewController',
         }
         ctrl.connect = function() {
             ctrl.ws = initWebsocket({
-                host: 'ws://192.168.1.180:13900',
+                // host: 'ws://192.168.1.180:13900',
+                host: 'ws://localhost:13900',
                 node: 'test'
             });
         };
