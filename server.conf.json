@@ -1,0 +1,10 @@
+{
+	"listen": {
+		"port": 13900
+	},
+	"verbose": true,
+	"nodes": ["default", "test"],
+	"bindings": [
+		{ "from": "default", "to": "test", "pattern": "test:*" }
+	]
+}
