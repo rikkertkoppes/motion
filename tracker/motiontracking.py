@@ -43,14 +43,16 @@ ws.on_open = on_open
 # ws.run_forever()
 
 #manually setting ring boundaries
+scale = 1
+offset = [0,0]
 rect = [[380,1400],[-10,95],[260,90],[830,230]]
 rect = [[380,1370],[-10,75],[260,60],[830,200]]
 M = cv2.getPerspectiveTransform(np.array(rect,np.float32), np.array([[0,0],[400,0],[400,200],[0,200]],np.float32))
-
+dragging = False
 
 # bounding rect of all contours -> cluster
 def findRects(contours):
-    print len(contours)
+    # print len(contours)
     rects = [cv2.boundingRect(ctr) for ctr in contours]
     return [((r[0],r[1]),(r[0]+r[2],r[1]+r[3])) for r in rects]
     # result = [(1000,1000),(0,0)]
@@ -70,15 +72,36 @@ def center(rect):
     (p1,p2) = rect
     return ((p1[0]+p2[0])/2,(p1[1]+p2[1])/2)
 
+def findPoint(rect, point):
+    for index, coord in enumerate(rect):
+        if (abs(coord[0] - point[0]) < 20) & (abs(coord[1] - point[1]) < 20):
+            return index
+    return -1
+
 #define perspective area we need to transform to
-def onclick(event,x,y,flags,param):
-    global rect, M
+def onmouse(event,x,y,flags,param):
+    global rect, M, dragging, scale, offset
+
+    # transform x, y to video coordinates
+    x = (x - offset[0])/scale
+    y = (y - offset[1])/scale
+
+    index = findPoint(rect,[x,y])
+
+    if (event == cv2.EVENT_MOUSEMOVE) & dragging:
+        if (index != -1):
+            rect[index] = [x,y]
+    if event == cv2.EVENT_LBUTTONUP:
+        dragging = False
     if event == cv2.EVENT_LBUTTONDOWN:
-        rect.append([x,y])
+        if (index == -1):
+            rect.append([x,y])
+        else:
+            dragging = True
+
         # print rect
 
     if event == cv2.EVENT_RBUTTONDOWN:
-        print 'right'
         rect = []
         M = None
 
@@ -107,14 +130,14 @@ def drawBounds(dst, rect, scale, size):
 
 
 def run(ws):
-    scale = 0.5
+    global scale, offset
     # cap = cv2.VideoCapture(0)
     # cap = cv2.VideoCapture('../samples/F3 Jill van Hall.mp4')
     # cap = cv2.VideoCapture('../samples/F3 Lois van de Velden.mp4')
     cap = cv2.VideoCapture('../../10.mp4')
     lastFrame = None
     cv2.namedWindow("frame", 1);
-    cv2.setMouseCallback("frame", onclick)
+    cv2.setMouseCallback("frame", onmouse)
     while(True):
         # Capture frame-by-frame
         ret, img = cap.read()
@@ -154,6 +177,7 @@ def run(ws):
         scaled = cv2.resize(img, (0,0), bkg, scale, scale) 
         x = int(round(w * (1-scale)/2))
         y = int(round(h * (1-scale)/2))
+        offset = [x,y]
         bkg[y:y + scaled.shape[0], x:x + scaled.shape[1]] = scaled
         if len(rect) > 1:
             drawBounds(bkg, rect, scale, (w,h))
