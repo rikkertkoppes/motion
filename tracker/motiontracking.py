@@ -18,8 +18,8 @@ import json
 
 # ws = None
 ws = websocket.WebSocket()
-# ws.connect("ws://192.168.1.180:13900")
-ws.connect("ws://localhost:13900")
+ws.connect("ws://192.168.1.180:13900")
+# ws.connect("ws://localhost:13900")
 
 def on_message(ws, message):
     print message
@@ -32,7 +32,6 @@ def on_close(ws):
 
 def on_open(ws):
     ws.send('{"type":"subscribe","node":"test"}')
-
 
 # websocket.enableTrace(True)
 # ws = websocket.WebSocketApp("ws://localhost:13900/",
@@ -95,11 +94,24 @@ def transformPoint(matrix, point):
     r = np.dot(M, [point[0],point[1],1])
     return [r[0]/r[2], r[1]/r[2]]
 
+def projectPoint(point, scale, size):
+    (w,h) = size
+    x = int(round(w * (1-scale)/2))
+    y = int(round(h * (1-scale)/2))
+    return [x+int(round(point[0]*scale)), y+int(round(point[1]*scale))]
+
+
+def drawBounds(dst, rect, scale, size):
+    rect = map(lambda c: projectPoint(c, scale, size),rect)
+    cv2.polylines(dst, np.array([rect]), True, (0,255,0), 2)
+
 
 def run(ws):
+    scale = 0.5
     # cap = cv2.VideoCapture(0)
     # cap = cv2.VideoCapture('../samples/F3 Jill van Hall.mp4')
-    cap = cv2.VideoCapture('../samples/F3 Lois van de Velden.mp4')
+    # cap = cv2.VideoCapture('../samples/F3 Lois van de Velden.mp4')
+    cap = cv2.VideoCapture('../../10.mp4')
     lastFrame = None
     cv2.namedWindow("frame", 1);
     cv2.setMouseCallback("frame", onclick)
@@ -110,6 +122,10 @@ def run(ws):
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         gray = cv2.GaussianBlur(gray, (11, 11), 0)
         p3 = None
+        
+        #black background for scaling
+        h,w,_ = img.shape
+        bkg = np.zeros((h,w,3), np.uint8)
 
         if lastFrame is not None:
             frameDelta = cv2.absdiff(lastFrame, gray)
@@ -131,19 +147,31 @@ def run(ws):
                 trans = cv2.warpPerspective(img,M,(400,200))
                 cv2.imshow('trans',trans)
 
-            if len(rect) > 1:
-                cv2.polylines(img, np.array([rect]), True, (0,255,0), 2)
 
-        	# cv2.imshow('frameDelta',frameDelta)
+            # cv2.imshow('frameDelta',frameDelta)
             cv2.imshow('delta',thresh)
 
-        cv2.imshow('frame',img)
+        scaled = cv2.resize(img, (0,0), bkg, scale, scale) 
+        x = int(round(w * (1-scale)/2))
+        y = int(round(h * (1-scale)/2))
+        bkg[y:y + scaled.shape[0], x:x + scaled.shape[1]] = scaled
+        if len(rect) > 1:
+            drawBounds(bkg, rect, scale, (w,h))
+        cv2.imshow('frame',bkg)
 
 
         lastFrame = gray
+        key = cv2.waitKey(1)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if key & 0xFF == ord('z'):
+            scale = max(0.1,scale-0.1)
+
+        if key & 0xFF == ord('x'):
+            scale = min(1,scale+0.1)
+
+        if key & 0xFF == ord('q'):
             break
+
 
     # When everything done, release the capture
     cap.release()
