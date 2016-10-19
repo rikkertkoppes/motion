@@ -10,7 +10,7 @@
         border: 2px solid black;
         position: absolute;
         left: 100px;
-        top: 100px;
+        top: 200px;
     }
     .rider {
         position: absolute;
@@ -19,12 +19,20 @@
         border-radius: 100%;
         background-color: blue;
     }
+    .expected {
+        background-color: red;
+    }
     </style>
 </head>
 <body ng-app="motion" ng-controller="viewController as view">
     <div class="ring">
-        <div class="rider" ng-style="view.riderStyle()"></div>
+        <div class="rider" ng-style="view.riderStyle(view.state.position)"></div>
+        <div class="rider expected" ng-style="view.riderStyle(view.state.expected)"></div>
     </div>
+    <p>Velocity: <span>{{view.state.velocity}}</span></p>
+    <p>Speed: <span>{{view.state.speed}}</span></p>
+    <p>Position: <span>{{view.state.position}}</span></p>
+    <p>Curvature: <span>{{view.state.curvature}}</span></p>
 <script>
 angular.module('motion',[]).controller('viewController',
     function($scope, $timeout) {
@@ -83,15 +91,42 @@ angular.module('motion',[]).controller('viewController',
             });
         };
 
+        function add(p1,p2) {
+            return [p1[0]+p2[0],p1[1]+p2[1]];
+        }
+        //difference between two vectors
+        function diff(p1,p2) {
+            return [p1[0]-p2[0],p1[1]-p2[1]];
+        }
         //return squared distance between two points (for sorting)
         function distance2(p1,p2) {
-            var dx = p1[0]-p2[0];
-            var dy = p1[1]-p2[1];
-            return dx*dx + dy*dy;
+            var d = diff(p1,p2);
+            return d[0]*d[0] + d[1]*d[1];
+        }
+        //inner product
+        function inner(p1,p2) {
+            return p1[0]*p2[0]+p1[1]*p2[1];
+        }
+
+        function byDistanceTo(lastPoint) {
+            return function(a,b) {
+                var da = distance2(a,lastPoint);
+                var db = distance2(b,lastPoint);
+                if (da === db) {return 0;}
+                return (da < db)? -1: 1;
+            };
         }
 
         var buffer = [];
         var bufferLength = 20;
+        var subsampling = 5;
+        var sample = 0;
+        ctrl.state = {
+            position: [0,0],
+            velocity: [0,0],
+            speed: 0,
+            time: 0
+        }
 
         ctrl.process = function(msg) {
             var lastPoint = buffer[buffer.length-1];
@@ -99,13 +134,7 @@ angular.module('motion',[]).controller('viewController',
                 //pick the point closest to the last point
                 var point = msg.data[0];
                 if (buffer.length) {
-                    var sorted = msg.data.sort(function(a,b) {
-                        var da = distance2(a,lastPoint);
-                        var db = distance2(b,lastPoint);
-                        if (da === db) {return 0;}
-                        return (da < db)? -1: 1;
-                    });
-                    console.log(sorted);
+                    var sorted = msg.data.sort(byDistanceTo(lastPoint));
                     point = sorted[0];
                 }
                 console.log(point);
@@ -113,18 +142,51 @@ angular.module('motion',[]).controller('viewController',
                 if (buffer.length > bufferLength) {
                     buffer.shift();
                 }
+                var point = buffer.reduce(function(avg, pos) {
+                    avg[0] += pos[0]/buffer.length;
+                    avg[1] += pos[1]/buffer.length;
+                    return avg;
+                }, [0,0]);
+                sample += 1;
+                if (sample % subsampling === 0) {
+                    this.state = this.updateState(this.state, point);
+                }
             }
         }
 
-        ctrl.riderStyle = function() {
-            var avg = buffer.reduce(function(avg, pos) {
-                avg[0] += pos[0]/buffer.length;
-                avg[1] += pos[1]/buffer.length;
-                return avg;
-            }, [0,0]);
+        //TODO: kalman filtering
+        //
+        //TODO: plot the x,y coordinates in camera space, filter that before any perspective transformation
+        //
+        ctrl.updateState = function(prevState, point) {
+            var p = point
+            var time = new Date().getTime();
+            //distance traveled
+            var d = diff(p, prevState.position);
+            var dx = Math.sqrt(distance2(p, prevState.position));
+            var dt = time - prevState.time;
+            var v = [d[0]/dt,d[1]/dt];
+            var s = dx / dt;
+            // error is projected position using previous position and speed
+            // compared to the actual position
+            var dExp = [prevState.velocity[0]*dt, prevState.velocity[1]*dt];
+            var exp = add(prevState.position, dExp);
+            var err = diff(d, dExp);
+            var curv = inner(err,d);
             return {
-                left: avg[0] +'px',
-                top: avg[1] +'px'
+                position: p,
+                time: time,
+                velocity: v,
+                speed: s,
+                expected: exp,
+                curvature: curv
+            }
+        }
+
+        ctrl.riderStyle = function(position) {
+            return {
+                left: position[0] +'px',
+                top: position[1] +'px'
             }
         }
 

@@ -18,8 +18,8 @@ import json
 
 # ws = None
 ws = websocket.WebSocket()
-ws.connect("ws://192.168.1.180:13900")
-# ws.connect("ws://localhost:13900")
+# ws.connect("ws://192.168.1.180:13900")
+ws.connect("ws://localhost:13900")
 
 def on_message(ws, message):
     print message
@@ -133,8 +133,8 @@ def run(ws):
     global scale, offset
     # cap = cv2.VideoCapture(0)
     # cap = cv2.VideoCapture('../samples/F3 Jill van Hall.mp4')
-    # cap = cv2.VideoCapture('../samples/F3 Lois van de Velden.mp4')
-    cap = cv2.VideoCapture('../../10.mp4')
+    cap = cv2.VideoCapture('../samples/F3 Lois van de Velden.mp4')
+    # cap = cv2.VideoCapture('../../10.mp4')
     lastFrame = None
     cv2.namedWindow("frame", 1);
     cv2.setMouseCallback("frame", onmouse)
