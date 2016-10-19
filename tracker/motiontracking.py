@@ -10,6 +10,7 @@
 # get the mid bottom point of the blob, which is the position
 # perspective transform that position
 
+import sys
 import cv2
 import numpy as np
 import itertools
@@ -33,6 +34,7 @@ def on_close(ws):
 def on_open(ws):
     ws.send('{"type":"subscribe","node":"test"}')
 
+
 # websocket.enableTrace(True)
 # ws = websocket.WebSocketApp("ws://localhost:13900/",
 #                           on_message = on_message,
@@ -42,6 +44,8 @@ ws.on_message = on_message
 ws.on_open = on_open
 # ws.run_forever()
 
+file = sys.argv[1]
+
 #manually setting ring boundaries
 scale = 1
 offset = [0,0]
@@ -49,6 +53,9 @@ rect = [[380,1400],[-10,95],[260,90],[830,230]]
 rect = [[380,1370],[-10,75],[260,60],[830,200]]
 M = cv2.getPerspectiveTransform(np.array(rect,np.float32), np.array([[0,0],[400,0],[400,200],[0,200]],np.float32))
 dragging = False
+data = {'M': M.tolist(), 'points': []}
+
+print json.dumps(data)
 
 # bounding rect of all contours -> cluster
 def findRects(contours):
@@ -80,7 +87,7 @@ def findPoint(rect, point):
 
 #define perspective area we need to transform to
 def onmouse(event,x,y,flags,param):
-    global rect, M, dragging, scale, offset
+    global rect, M, dragging, scale, offset, data
 
     # transform x, y to video coordinates
     x = (x - offset[0])/scale
@@ -106,12 +113,16 @@ def onmouse(event,x,y,flags,param):
         M = None
 
     if len(rect) == 4:
-        M = cv2.getPerspectiveTransform(np.array(rect,np.float32), np.array([[0,0],[400,0],[400,200],[0,200]],np.float32));
+        M = cv2.getPerspectiveTransform(np.array(rect,np.float32), np.array([[0,0],[400,0],[400,200],[0,200]],np.float32))
+        data['M'] = M.tolist()
         # print M
 
 def onresult(ws, points):
-    print json.dumps(points)
+    global data
+    # print json.dumps(points)
     ws.send('{"type":"publish","node":"test","topic":"location","data":'+json.dumps(points)+'}')
+    # print json.dumps(data)
+    data['points'].append(points)
 
 def transformPoint(matrix, point):
     r = np.dot(M, [point[0],point[1],1])
@@ -129,18 +140,23 @@ def drawBounds(dst, rect, scale, size):
     cv2.polylines(dst, np.array([rect]), True, (0,255,0), 2)
 
 
-def run(ws):
+def run(file, ws):
     global scale, offset
     # cap = cv2.VideoCapture(0)
     # cap = cv2.VideoCapture('../samples/F3 Jill van Hall.mp4')
-    cap = cv2.VideoCapture('../samples/F3 Lois van de Velden.mp4')
+    # cap = cv2.VideoCapture('../samples/F3 Lois van de Velden.mp4')
+    cap = cv2.VideoCapture(file)
     # cap = cv2.VideoCapture('../../10.mp4')
     lastFrame = None
-    cv2.namedWindow("frame", 1);
+    cv2.namedWindow("frame", 1)
     cv2.setMouseCallback("frame", onmouse)
     while(True):
         # Capture frame-by-frame
         ret, img = cap.read()
+
+        if ret == False:
+            break
+
         # frame = imutils.resize(img, width=500)
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         gray = cv2.GaussianBlur(gray, (11, 11), 0)
@@ -200,6 +216,8 @@ def run(ws):
     # When everything done, release the capture
     cap.release()
 
-run(ws)
+run(file, ws)
 # static()
 cv2.destroyAllWindows()
+
+print json.dumps(data)
