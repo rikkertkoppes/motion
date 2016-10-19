@@ -44,7 +44,8 @@ ws.on_message = on_message
 ws.on_open = on_open
 # ws.run_forever()
 
-file = sys.argv[1]
+videofile = sys.argv[1]
+datafile = sys.argv[2]
 
 #manually setting ring boundaries
 scale = 1
@@ -140,13 +141,10 @@ def drawBounds(dst, rect, scale, size):
     cv2.polylines(dst, np.array([rect]), True, (0,255,0), 2)
 
 
-def run(file, ws):
+def run(videofile, ws):
     global scale, offset
     # cap = cv2.VideoCapture(0)
-    # cap = cv2.VideoCapture('../samples/F3 Jill van Hall.mp4')
-    # cap = cv2.VideoCapture('../samples/F3 Lois van de Velden.mp4')
-    cap = cv2.VideoCapture(file)
-    # cap = cv2.VideoCapture('../../10.mp4')
+    cap = cv2.VideoCapture(videofile)
     lastFrame = None
     cv2.namedWindow("frame", 1)
     cv2.setMouseCallback("frame", onmouse)
@@ -216,8 +214,11 @@ def run(file, ws):
     # When everything done, release the capture
     cap.release()
 
-run(file, ws)
+run(videofile, ws)
 # static()
 cv2.destroyAllWindows()
 
-print json.dumps(data)
+f = open(datafile,'w')
+f.write(json.dumps(data))
+
+print 'data written to file '+datafile
