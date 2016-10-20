@@ -3,7 +3,6 @@
 <head>
     <title>Locationviewer</title>
     <script src="bower_components/angular/angular.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style type="text/css">
     .ring {
         width: 400px;
@@ -23,10 +22,6 @@
     .expected {
         background-color: red;
     }
-    #plot {
-        width: 600px;
-        height: 250px;
-    }
     </style>
 </head>
 <body ng-app="motion" ng-controller="viewController as view">
@@ -38,19 +33,7 @@
     <p>Speed: <span>{{view.state.speed}}</span></p>
     <p>Position: <span>{{view.state.position}}</span></p>
     <p>Curvature: <span>{{view.state.curvature}}</span></p>
-    <div id="plot"></div>
 <script>
-
-TESTER = document.getElementById('plot');
-    Plotly.plot(
-        TESTER,
-        [{
-            x: [1, 2, 4, 3, 5],
-            y: [1, 2, 4, 8, 16]
-        }], {
-            margin: { t: 0 }
-        }
-    );
 
 angular.module('motion',[]).controller('viewController',
     function($scope, $timeout) {

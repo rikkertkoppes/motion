@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+    .plot {
+        height: 400px;
+    }
+    </style>
+</head>
+<body>
+    <div id="raw" class="plot"></div>
+    <div id="filtered" class="plot"></div>
+    <div id="cam" class="plot"></div>
+    <script>
+        fetch('../data/F3JVH-cam.json').then(function(response) {
+            return response.json()
+        }).then(function(raw) {
+            console.log(raw);
+            var data = toSeries(process(raw, indentity()));
+            var filtered = toSeries(process(raw, lowPass(0.1)));
+            var cam = toScatter(process(raw, lowPass(0.1)));
+            // data[0].y = data[0].y.reduce(lowPass(0.2), []);
+            console.log(data);
+            plot('raw',data);
+            plot('filtered',filtered);
+            plot('cam',cam);
+        });
+
+        function process(data, filter) {
+            return data.points.reduce(function(points, set, i) {
+                //TODO: refactor a bit here
+                var best, last = points[points.length-1];
+                if (last) {
+                    var filteredSet = set.map(function(candidate) {
+                        return [
+                            filter([last[0]], candidate[0]).pop(),
+                            filter([last[1]], candidate[1]).pop()
+                        ];
+                    });
+                    best = filteredSet.sort(byDistanceTo(last))[0];
+                } else {
+                    best = set[0];
+                }
+                return points.concat([best]);
+            }, []);
+        }
+
+        //converts array of points to two plot.ly series
+        function toSeries(points) {
+            return points.reduce(function(data, point, index) {
+                var s1 = data[0];
+                var s2 = data[1];
+                s1.x.push(index);
+                s1.y.push(point[0]);
+                s2.x.push(index);
+                s2.y.push(point[1]);
+                return data;
+            },[{x:[],y:[]},{x:[],y:[]}]);
+        }
+
+        function toScatter(points) {
+            return points.reduce(function(data, point) {
+                var s1 = data[0];
+                s1.x.push(point[0]);
+                s1.y.push(point[1]);
+                return data;
+            },[{x:[],y:[]}]);
+        }
+
+        function findBest(last, candidates, filter) {
+
+        }
+
+        function plot(id, data) {
+            return Plotly.newPlot(
+                document.getElementById(id),
+                data, {
+                    margin: { t: 0 }
+                },{
+                    scrollZoom: true
+                }
+            );
+        }
+
+        //filters (reducers)
+        function indentity() {
+            return function(data, point) {
+                return data.concat(point);
+            };
+        }
+
+        //lowpass reducer for a single series
+        function lowPass(α) {
+            return function(data, point) {
+                var prev = data[data.length-1];
+                if (prev) {
+                    return data.concat(α * point + (1-α) * prev);
+                } else {
+                    return data.concat(point);
+                }
+            }
+        }
+
+        function diff(p1,p2) {
+            return [p1[0]-p2[0],p1[1]-p2[1]];
+        }
+
+        function distance2(p1,p2) {
+            var d = diff(p1,p2);
+            return d[0]*d[0] + d[1]*d[1];
+        }
+
+        //sorter by distance to another point
+        function byDistanceTo(target) {
+            return function (p1, p2) {
+                var d1 = distance2(target, p1);
+                var d2 = distance2(target, p2);
+                if (d1 === d2) {
+                    return 0;
+                } else {
+                    return (d1 < d2)?-1:1;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
