@@ -3,6 +3,7 @@
 <head>
     <title>Locationviewer</title>
     <script src="bower_components/angular/angular.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style type="text/css">
     .ring {
         width: 400px;
@@ -22,6 +23,10 @@
     .expected {
         background-color: red;
     }
+    #plot {
+        width: 600px;
+        height: 250px;
+    }
     </style>
 </head>
 <body ng-app="motion" ng-controller="viewController as view">
@@ -33,7 +38,20 @@
     <p>Speed: <span>{{view.state.speed}}</span></p>
     <p>Position: <span>{{view.state.position}}</span></p>
     <p>Curvature: <span>{{view.state.curvature}}</span></p>
+    <div id="plot"></div>
 <script>
+
+TESTER = document.getElementById('plot');
+    Plotly.plot(
+        TESTER,
+        [{
+            x: [1, 2, 4, 3, 5],
+            y: [1, 2, 4, 8, 16]
+        }], {
+            margin: { t: 0 }
+        }
+    );
+
 angular.module('motion',[]).controller('viewController',
     function($scope, $timeout) {
         var ctrl = this;
@@ -154,9 +172,30 @@ angular.module('motion',[]).controller('viewController',
             }
         }
 
+
+        // function lowPass(smoothingFactor, signal) {
+        //     var α = smoothingFactor;
+        //     return signal.reduce((result, x) => {
+        //         prev = result[result.length-1];
+        //         y = α * x + (1-α) * prev;
+        //         return result.concat([y]);
+        //     }
+        // }
+
         //TODO: kalman filtering
         //
-        //TODO: plot the x,y coordinates in camera space, filter that before any perspective transformation
+        // TODO: plot the x,y coordinates in camera space, filter that before any perspective transformation
+        // low pass filter: https://en.wikipedia.org/wiki/Low-pass_filter
+        // y[i] = α * x[i] + (1-α) * y[i-1]
+        // y[0] = x[0]
+        // where x = unfiltered signal, y = filtered signal
+        // 
+        // from an excel test α = 0.2 works quite well, any lower shifts the signal considerably
+        //
+        // Do the low-pass filtering while the best next point is determined. If we have multiple points
+        // to choose from, take the one closest to the filtered previous point, otherwise the
+        // choice of the next point would be influenced by the error in the previous
+        //
         //
         ctrl.updateState = function(prevState, point) {
             var p = point
