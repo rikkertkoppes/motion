@@ -122,8 +122,6 @@ def onresult(ws, points):
     global data
     # print json.dumps(points)
     ws.send('{"type":"publish","node":"test","topic":"location","data":'+json.dumps(points)+'}')
-    # print json.dumps(data)
-    data['points'].append(points)
 
 def transformPoint(matrix, point):
     r = np.dot(M, [point[0],point[1],1])
@@ -179,6 +177,8 @@ def run(videofile, ws):
                     cv2.circle(img, p3, 4, (255,0,0), -1)
                 if M is not None:
                     onresult(ws, [transformPoint(M,p) for p in bottoms])
+                    # data['points'].append(points)
+                    data['points'].append(bottoms)
 
             if M is not None:
                 trans = cv2.warpPerspective(img,M,(400,200))
