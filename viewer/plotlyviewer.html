@@ -7,30 +7,47 @@
     <style>
     .plot {
         height: 400px;
+        width: 45%;
+        float: left;
     }
     </style>
 </head>
 <body>
-    <div id="raw" class="plot"></div>
-    <div id="filtered" class="plot"></div>
+    <div id="cdata" class="plot"></div>
+    <div id="wdata" class="plot"></div>
+    <div id="cfiltered" class="plot"></div>
+    <div id="wfiltered" class="plot"></div>
     <div id="cam" class="plot"></div>
+    <div id="world" class="plot"></div>
+    <div id="v" class="plot"></div>
     <script>
-        fetch('../data/F3JVH-cam.json').then(function(response) {
+        // fetch('../data/F3JVH-cam.json').then(function(response) {
+        fetch('../data/F3LVDV-cam.json').then(function(response) {
             return response.json()
-        }).then(function(raw) {
-            console.log(raw);
-            var data = toSeries(process(raw, indentity()));
-            var filtered = toSeries(process(raw, lowPass(0.1)));
-            var cam = toScatter(process(raw, lowPass(0.1)));
-            // data[0].y = data[0].y.reduce(lowPass(0.2), []);
+        }).then(function(data) {
+            var points = data.points;//.slice(400,750);
             console.log(data);
-            plot('raw',data);
-            plot('filtered',filtered);
-            plot('cam',cam);
+            var cdata = process(points, indentity());
+            var cfiltered = process(points, lowPass(0.1));
+            var wdata = cdata.map(homography(data.M));
+            var wfiltered = cfiltered.map(homography(data.M));
+            var wvelocity = wfiltered.map(function(p,i) {
+                if (i==0) return 0;
+                return Math.sqrt(distance2(p, wfiltered[i-1]));
+            }).reduce(lowPass(0.05), [])
+            .map((v,i) => [i,v]);
+            console.log(wvelocity);
+            plot('cdata',toSeries(cdata));
+            plot('wdata',toSeries(wdata));
+            plot('cfiltered',toSeries(cfiltered));
+            plot('wfiltered',toSeries(wfiltered));
+            plot('cam',toScatter(cfiltered));
+            plot('world',toScatter(wfiltered));
+            plot('v',toScatter(wvelocity));
         });
 
-        function process(data, filter) {
-            return data.points.reduce(function(points, set, i) {
+        function process(points, filter) {
+            return points.reduce(function(points, set, i) {
                 //TODO: refactor a bit here
                 var best, last = points[points.length-1];
                 if (last) {
@@ -74,38 +91,74 @@
 
         }
 
+        var allPlots = [];
         function plot(id, data) {
-            return Plotly.newPlot(
-                document.getElementById(id),
-                data, {
-                    margin: { t: 0 }
+            var el = document.getElementById(id);
+            var plot = Plotly.newPlot(
+                el,
+                data,
+                {
+                    margin: { t: 0 },
+                    xaxis: {
+                        // rangeslider: {}
+                    },
                 },{
                     scrollZoom: true
                 }
             );
+            allPlots.push(el);
+            // el.on('plotly_relayout', function(e) {
+            //     var range = e['xaxis.range'];
+            //     allPlots.forEach(function(plot) {
+            //         Plotly.relayout(plot, {
+            //             'xaxis.range': range
+            //         });
+            //     });
+            //     console.log(range);
+            // });
+            return plot;
         }
 
         //filters (reducers)
         function indentity() {
-            return function(data, point) {
-                return data.concat(point);
+            return function(data, datum) {
+                return data.concat(datum);
             };
         }
 
         //lowpass reducer for a single series
         function lowPass(α) {
-            return function(data, point) {
+            return function(data, scalar) {
                 var prev = data[data.length-1];
                 if (prev) {
-                    return data.concat(α * point + (1-α) * prev);
+                    return data.concat(α * scalar + (1-α) * prev);
                 } else {
-                    return data.concat(point);
+                    return data.concat(scalar);
                 }
+            }
+        }
+
+        //helpers
+        function homography(m) {
+            return function(p) {
+                p = p.concat(1);
+                var r = [
+                    dot(m[0],p),
+                    dot(m[1],p),
+                    dot(m[2],p)
+                ];
+                return [r[0]/r[2], r[1]/r[2]];
             }
         }
 
         function diff(p1,p2) {
             return [p1[0]-p2[0],p1[1]-p2[1]];
+        }
+
+        function dot(p1,p2) {
+            return p1.reduce(function(sum, cc,i) {
+                return sum + (p1[i] * p2[i]);
+            },0);
         }
 
         function distance2(p1,p2) {
