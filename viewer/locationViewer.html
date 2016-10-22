@@ -12,6 +12,31 @@
         left: 100px;
         top: 200px;
     }
+    .hor {
+        position: absolute;
+        left: 0;
+        top: 66px;
+        bottom: 66px;
+        width: 100%;
+        border: 1px solid silver;
+        border-width: 1px 0px;
+    }
+    .ver {
+        position: absolute;
+        left: 135px;
+        width: 130px;
+        top: 0px;
+        height: 100%;
+        border: 1px solid silver;
+        border-width: 0px 1px;
+    }
+    .dot {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background-color: silver;
+    }
     .rider {
         position: absolute;
         width: 8px;
@@ -26,8 +51,15 @@
 </head>
 <body ng-app="motion" ng-controller="viewController as view">
     <div class="ring">
-        <div class="rider" ng-style="view.riderStyle(view.state.position)"></div>
-        <div class="rider expected" ng-style="view.riderStyle(view.state.expected)"></div>
+        <div class="hor"></div>
+        <div class="ver"></div>
+        <div ng-repeat="point in view.history" 
+            ng-class="{
+                rider: $last,
+                dot: !$last
+            }" 
+            ng-style="view.riderStyle(point)"
+        ></div>
     </div>
     <p>Velocity: <span>{{view.state.velocity}}</span></p>
     <p>Speed: <span>{{view.state.speed}}</span></p>
@@ -86,7 +118,7 @@ angular.module('motion',[]).controller('viewController',
         }
         ctrl.connect = function() {
             ctrl.ws = initWebsocket({
-                // host: 'ws://192.168.1.180:13900',
+                // host: 'ws://192.168.1.125:13900',
                 host: 'ws://localhost:13900',
                 node: 'test'
             });
@@ -128,6 +160,8 @@ angular.module('motion',[]).controller('viewController',
             speed: 0,
             time: 0
         }
+        ctrl.history = [];
+        var historyLength = 100;
 
         ctrl.process = function(msg) {
             var lastPoint = buffer[buffer.length-1];
@@ -139,21 +173,34 @@ angular.module('motion',[]).controller('viewController',
                     point = sorted[0];
                 }
                 console.log(point);
-                buffer.push(point);
-                if (buffer.length > bufferLength) {
-                    buffer.shift();
-                }
-                var point = buffer.reduce(function(avg, pos) {
-                    avg[0] += pos[0]/buffer.length;
-                    avg[1] += pos[1]/buffer.length;
-                    return avg;
-                }, [0,0]);
+                this.addPoint(point);
                 sample += 1;
                 if (sample % subsampling === 0) {
                     this.state = this.updateState(this.state, point);
                 }
             }
         }
+
+        ctrl.addPoint = function(point) {
+            //add point to the buffer
+            buffer.push(point);
+            if (buffer.length > bufferLength) {
+                buffer.shift();
+            }
+            //calculate moving average
+            var avg = buffer.reduce(function(avg, pos) {
+                avg[0] += pos[0]/buffer.length;
+                avg[1] += pos[1]/buffer.length;
+                return avg;
+            }, [0,0]);
+            //add to history
+            ctrl.history.push(avg);
+            if (ctrl.history.length > historyLength) {
+                ctrl.history.shift();
+            }
+        }
+
+        // this.addPoint(point);
 
 
         // function lowPass(smoothingFactor, signal) {
@@ -205,10 +252,10 @@ angular.module('motion',[]).controller('viewController',
             }
         }
 
-        ctrl.riderStyle = function(position) {
+        ctrl.riderStyle = function(point) {
             return {
-                left: position[0] +'px',
-                top: position[1] +'px'
+                left: point[0] +'px',
+                top: point[1] +'px'
             }
         }
 
