@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="../helpers.js"></script>
+    <style>
+    .plot {
+        height: 75px;
+        border: 1px solid black;
+        float: left;
+    }
+    .mask {
+        overflow: auto;
+        position: relative;
+    }
+    .mask img {
+        float: left;
+    }
+    .sample {
+        opacity: 0.5;
+        position: absolute;
+        left: 0;
+    }
+    </style>
+</head>
+<body>
+    <div class="mask">
+        <img src="masks/gebrokenlijnB.png">
+        <img src="masks/gebrokenlijnB.png">
+        <img src="testVolte.png" class="sample">
+        <div id="m1" class="plot"></div>
+    </div>
+    <div class="mask">
+        <img src="masks/gebrokenlijnB5.png">
+        <img src="masks/gebrokenlijnB5.png">
+        <img src="testVolte.png" class="sample">
+        <div id="m2" class="plot"></div>
+    </div>
+    <div class="mask">
+        <img src="masks/gebrokenlijnE.png">
+        <img src="masks/gebrokenlijnE.png">
+        <img src="testVolte.png" class="sample">
+        <div id="m3" class="plot"></div>
+    </div>
+    <div class="mask">
+        <img src="masks/gebrokenlijnE5.png">
+        <img src="masks/gebrokenlijnE5.png">
+        <img src="testVolte.png" class="sample">
+        <div id="m4" class="plot"></div>
+    </div>
+    <div class="mask">
+        <img src="masks/vanhandveranderenFH.png">
+        <img src="masks/vanhandveranderenFH.png">
+        <img src="testVolte.png" class="sample">
+        <div id="m5" class="plot"></div>
+    </div>
+    <div class="mask">
+        <img src="masks/vanhandveranderenMK.png">
+        <img src="masks/vanhandveranderenMK.png">
+        <img src="testVolte.png" class="sample">
+        <div id="m6" class="plot"></div>
+    </div>
+    <div class="mask">
+        <img src="masks/volteA.png">
+        <img src="masks/volteA.png">
+        <img src="testVolte.png" class="sample">
+        <div id="m7" class="plot"></div>
+    </div>
+    <div class="mask">
+        <img src="masks/volteC.png">
+        <img src="masks/volteC.png">
+        <img src="testVolte.png" class="sample">
+        <div id="m8" class="plot"></div>
+    </div>
+    <div class="mask">
+        <img src="masks/volteEB.png">
+        <img src="masks/volteEB.png">
+        <img src="testVolte.png" class="sample">
+        <div id="m9" class="plot"></div>
+    </div>
+    <script>
+        // fetch('../data/F3JVH-cam.json').then(function(response) {
+        fetch('./integrated.json').then(function(response) {
+            return response.json()
+        }).then(function(data) {
+            data.forEach(function(figure,i) {
+                var total = figure.reduce((t,v) => t+v, 0);
+                console.log(total);
+                plot('m'+(i+1),toSeries(figure))
+            })
+        });
+
+        //converts array of points to two plot.ly series
+        function toSeries(points) {
+            return points.reduce(function(data, point, index) {
+                var s1 = data[0];
+                s1.x.push(index);
+                s1.y.push(point);
+                return data;
+            },[{x:[],y:[]}]);
+        }
+
+        var allPlots = [];
+        function plot(id, data, layout) {
+            var el = document.getElementById(id);
+            var plot = Plotly.newPlot(
+                el,
+                data,
+                layout || {
+                    margin: { t: 0, r:0, b:0, l:50 },
+                    xaxis: {
+                        // rangeslider: {}
+                    },
+                },{
+                    scrollZoom: true
+                }
+            );
+            allPlots.push(el);
+            return plot;
+        }
+
+    </script>
+</body>
+</html>

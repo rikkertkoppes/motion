@@ -25,11 +25,11 @@ function indentity() {
 }
 
 //lowpass reducer for a single series
-function lowPass(α) {
+function lowPass(alpha) {
     return function(data, scalar) {
         var prev = data[data.length-1];
         if (prev) {
-            return data.concat(α * scalar + (1-α) * prev);
+            return data.concat(alpha * scalar + (1-alpha) * prev);
         } else {
             return data.concat(scalar);
         }
@@ -51,6 +51,10 @@ function homography(m) {
 
 function diff(p1,p2) {
     return [p1[0]-p2[0],p1[1]-p2[1]];
+}
+
+function add(p1,p2) {
+    return [p1[0]+p2[0],p1[1]+p2[1]];
 }
 
 function dot(p1,p2) {
@@ -84,6 +88,7 @@ if (typeof exports === 'object') {
         lowPass: lowPass,
         homography: homography,
         diff: diff,
+        add: add,
         dot: dot,
         distance2: distance2,
         byDistanceTo: byDistanceTo
