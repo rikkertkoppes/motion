@@ -4,25 +4,29 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="../helpers.js"></script>
     <style>
     .plot {
-        height: 400px;
+        height: 200px;
         width: 45%;
+        width: 400px;
+        border: 1px solid black;
         float: left;
     }
     </style>
 </head>
 <body>
-    <div id="cdata" class="plot"></div>
+    <!-- <div id="cdata" class="plot"></div>
     <div id="wdata" class="plot"></div>
     <div id="cfiltered" class="plot"></div>
     <div id="wfiltered" class="plot"></div>
-    <div id="cam" class="plot"></div>
+    <div id="cam" class="plot"></div> -->
     <div id="world" class="plot"></div>
     <div id="v" class="plot"></div>
     <script>
         var worldLayout = {
             margin: { t: 0 },
+            title: 'foo',
             line: {
                 width: 20
             }
@@ -44,33 +48,14 @@
             }).reduce(lowPass(0.05), [])
             .map((v,i) => [i,v]);
             console.log(wvelocity);
-            plot('cdata',toSeries(cdata));
-            plot('wdata',toSeries(wdata));
-            plot('cfiltered',toSeries(cfiltered));
-            plot('wfiltered',toSeries(wfiltered));
-            plot('cam',toScatter(cfiltered));
+            // plot('cdata',toSeries(cdata));
+            // plot('wdata',toSeries(wdata));
+            // plot('cfiltered',toSeries(cfiltered));
+            // plot('wfiltered',toSeries(wfiltered));
+            // plot('cam',toScatter(cfiltered));
             plot('world',toScatter(wfiltered), worldLayout);
             plot('v',toScatter(wvelocity));
         });
-
-        function process(points, filter) {
-            return points.reduce(function(points, set, i) {
-                //TODO: refactor a bit here
-                var best, last = points[points.length-1];
-                if (last) {
-                    var filteredSet = set.map(function(candidate) {
-                        return [
-                            filter([last[0]], candidate[0]).pop(),
-                            filter([last[1]], candidate[1]).pop()
-                        ];
-                    });
-                    best = filteredSet.sort(byDistanceTo(last))[0];
-                } else {
-                    best = set[0];
-                }
-                return points.concat([best]);
-            }, []);
-        }
 
         //converts array of points to two plot.ly series
         function toSeries(points) {
@@ -94,12 +79,9 @@
             },[{x:[],y:[]}]);
         }
 
-        function findBest(last, candidates, filter) {
-
-        }
-
         var allPlots = [];
         function plot(id, data, layout) {
+            console.log(layout);
             var el = document.getElementById(id);
             var plot = Plotly.newPlot(
                 el,
@@ -124,66 +106,6 @@
             //     console.log(range);
             // });
             return plot;
-        }
-
-        //filters (reducers)
-        function indentity() {
-            return function(data, datum) {
-                return data.concat(datum);
-            };
-        }
-
-        //lowpass reducer for a single series
-        function lowPass(α) {
-            return function(data, scalar) {
-                var prev = data[data.length-1];
-                if (prev) {
-                    return data.concat(α * scalar + (1-α) * prev);
-                } else {
-                    return data.concat(scalar);
-                }
-            }
-        }
-
-        //helpers
-        function homography(m) {
-            return function(p) {
-                p = p.concat(1);
-                var r = [
-                    dot(m[0],p),
-                    dot(m[1],p),
-                    dot(m[2],p)
-                ];
-                return [r[0]/r[2], r[1]/r[2]];
-            }
-        }
-
-        function diff(p1,p2) {
-            return [p1[0]-p2[0],p1[1]-p2[1]];
-        }
-
-        function dot(p1,p2) {
-            return p1.reduce(function(sum, cc,i) {
-                return sum + (p1[i] * p2[i]);
-            },0);
-        }
-
-        function distance2(p1,p2) {
-            var d = diff(p1,p2);
-            return d[0]*d[0] + d[1]*d[1];
-        }
-
-        //sorter by distance to another point
-        function byDistanceTo(target) {
-            return function (p1, p2) {
-                var d1 = distance2(target, p1);
-                var d2 = distance2(target, p2);
-                if (d1 === d2) {
-                    return 0;
-                } else {
-                    return (d1 < d2)?-1:1;
-                }
-            }
         }
     </script>
 </body>
