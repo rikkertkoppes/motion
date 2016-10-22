@@ -27,7 +27,7 @@ paper.setup(canvas);
 paper.view.center = new paper.Point(0, 0);
 paper.view.zoom = w/40;
 var defaultStyle = {
-    strokeColor: 'black',
+    strokeColor: 'white',
     strokeWidth: s,
     strokeCap: 'round'
 }
@@ -49,7 +49,7 @@ Object.keys(paths).reduce(function(pending, name) {
 
 function clear() {
     paper.project.activeLayer.removeChildren();
-    paper.Path.Rectangle(new paper.Point([-20, -10]), new paper.Point([20, 10])).set({ fillColor: 'white' });
+    paper.Path.Rectangle(new paper.Point([-20, -10]), new paper.Point([20, 10])).set({ fillColor: 'black' });
 }
 
 //render to image
