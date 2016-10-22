@@ -1,3 +1,7 @@
+/**
+ * creates a test image from a part of the data using paperjs
+ */
+
 var paper = require('paper');
 var fs = require('fs');
 var path = require('path');

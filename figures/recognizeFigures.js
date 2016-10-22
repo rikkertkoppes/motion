@@ -1,9 +1,12 @@
-var glob = promisify(require('glob'));
-var getPixels = promisify(require('get-pixels'));
+/**
+ * very simple proof of concept that a figure can be classified by calculating
+ * the overlap between a sample image and some possible figures.
+*/
+var lib = require('./lib.js');
 var cwise = require("cwise");
 
-getMasks().then(function(masks) {
-    getBinary('./testVolte.png').then(function(sample) {
+lib.getMasks().then(function(masks) {
+    lib.getBinary('./testVolte.png').then(function(sample) {
         console.log(masks.length);
         var scores = classify(sample, masks);
         console.log(scores);
@@ -32,34 +35,4 @@ function classify(sample, masks) {
     return masks.map(function(mask) {
         return overlap(mask, sample);
     });
-}
-
-//getPixels, but one channel
-function getBinary(path) {
-    return getPixels(path).then(function(pixels) {
-        return pixels.pick(null,null,0);
-    });
-}
-
-function getMasks() {
-    return glob('./masks/*.png').then(function(paths) {
-        console.log(paths);
-        return Promise.all(paths.map(getBinary));
-    });
-}
-
-function promisify(fn) {
-    return function() {
-        var args = [].slice.apply(arguments);
-        return new Promise(function(resolve, reject) {
-            args.push(function(err, result) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(result);
-                }
-            });
-            fn.apply(this, args);
-        });
-    }
 }

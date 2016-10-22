@@ -1,5 +1,5 @@
 /**
- * generates templates for figures
+ * generates masks for figures
  */
 var paper = require('paper');
 var fs = require('fs');
