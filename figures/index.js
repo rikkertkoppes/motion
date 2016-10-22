@@ -38,7 +38,7 @@ Object.keys(paths).reduce(function(pending, name) {
         clear();
         var line = createPath.apply(null,paths[name]).set(defaultStyle);
         paper.view.update();
-        return renderImage(path.resolve('figures',name), canvas);
+        return renderImage(path.resolve('masks',name+'.png'), canvas);
     })
 }, Promise.resolve()).then(function() {
     console.log('done')
