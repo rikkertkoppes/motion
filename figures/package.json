@@ -9,6 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cwise": "^1.0.9",
+    "get-pixels": "^3.3.0",
+    "glob": "^7.1.1",
+    "ndarray": "^1.0.18",
     "paper": "^0.10.2"
   }
 }
