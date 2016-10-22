@@ -77,7 +77,7 @@ function byDistanceTo(target) {
     }
 }
 
-if (this.module && module.exports) {
+if (typeof exports === 'object') {
     module.exports = {
         process: process,
         indentity: indentity,
