@@ -22,7 +22,7 @@ function getBinary(path) {
     return getPixels(path).then(function(pixels) {
         return {
             path: path,
-            img: pixels.pick(null,null,0)
+            img: pixels
         }
     });
 }
