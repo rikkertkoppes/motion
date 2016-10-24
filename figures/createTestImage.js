@@ -19,26 +19,50 @@ paper.view.zoom = w/40;
 var defaultStyle = {
     strokeColor: 'white',
     strokeWidth: s,
-    strokeCap: 'round'
+    strokeCap: 'round',
+    strokeJoin: 'round'
 }
 
-var points = data.points.slice(400,750);
-var cfiltered = helpers.process(points, helpers.lowPass(0.1));
-var wfiltered = cfiltered.map(helpers.homography(data.M)).map(p => {
-	return [(p[0]/10)-20,(p[1]/10)-10]
-});
+var sliceSize = 250;
+var s = 0, slices = [];
+while (s < data.points.length) {
+    slices.push(data.points.slice(s,s+sliceSize));
+    s += sliceSize;
+}
 
-
-clear();
-new paper.Path(wfiltered).set(defaultStyle);
-paper.view.update();
-
-renderImage('./test.png', canvas).then(function() {
-	console.log('done');
+slices.reduce(function(pending, slice, i) {
+    return pending.then(function() {
+        console.log(slice.length);
+        return renderPoints(slice,'./test/test'+i+'.png');
+    });
+}, Promise.resolve()).then(function() {
+    console.log('done');
 }, function(err) {
-	console.log(err);
+    console.log(err);
 });
 
+
+
+// var points = data.points.slice(400,750);
+// renderPoints(points, './test.png').then(function() {
+//     console.log('done');
+// }, function(err) {
+//     console.log(err);
+// });
+
+function renderPoints(points, path) {
+    var cfiltered = helpers.process(points, helpers.lowPass(0.1));
+    var wfiltered = cfiltered.map(helpers.homography(data.M)).map(p => {
+    	return [(p[0]/10)-20,(p[1]/10)-10]
+    });
+
+
+    clear();
+    new paper.Path(wfiltered).set(defaultStyle);
+    paper.view.update();
+
+    return renderImage(path, canvas);
+}
 
 function clear() {
     paper.project.activeLayer.removeChildren();
