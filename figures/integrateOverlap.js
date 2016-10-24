@@ -72,9 +72,15 @@ var wfiltered = cfiltered.map(helpers.homography(data.M)).map(p => {
     ]
 });
 var wfilteredSDR = wfiltered.map(function(point, i) {
-    var other = (i===0)? wfiltered[1] : wfiltered[i-1];
+    var heading;
+    var lookback = 5;
     //TODO: filter heading somewhat
-    var heading = 90 - Math.atan2.apply(null,helpers.diff(point,other)) * 180 / Math.PI;
+    if (i < lookback) {
+        heading = 0;
+    } else {
+        var other = wfiltered[i-lookback];
+        heading = 90 - Math.atan2.apply(null,helpers.diff(point,other)) * 180 / Math.PI;
+    }
     // var arr = ndarray(makeSDR(point, heading),[w,w/2,4],[4,400,1]);
     var arr = ndarray(makeSDR(point, heading),[10,10,4],[4,40,1]);
     // savePixels(arr,'png').pipe(fs.createWriteStream('./foo.png'));
@@ -92,8 +98,6 @@ lib.getMasks().then(function(masks) {
             mask: mask.path,
             data: wfilteredSDR.map(function(sdr,i) {
                 var tl = helpers.add(sdr.point,[-5,-5]);
-                var br = helpers.add(sdr.point,[5,5]);
-                // var point = [Math.round(sdr.point[0]),Math.round(sdr.point[1])];
                 // TODO: optimization: crop image before calculating overlap
                 // TODO: optimization calculate mask size beforehand
                 // TODO: debug: check for workings
