@@ -8,16 +8,40 @@ var path = require('path');
 var w = 100;
 var s = 4;
 
+
+//TODO: use http://paperjs.org/tutorials/interaction/working-with-mouse-vectors/
+//to embed direction in the image
 var paths = {
-    'volteEB': [[[0,-9.5],[9.5,-9.5],[9.5,9.5],[-9.5,9.5],[-9.5,-9.5],[0,-9.5]],9.5],
-    'volteA': [[[-19.5,0],[-19.5,-9.5],[0,-9.5],[0,9.5],[-19.5,9.5],[-19.5,0]],9.5],
-    'volteC': [[[19.5,0],[19.5,-9.5],[0,-9.5],[0,9.5],[19.5,9.5],[19.5,0]],9.5],
-    'gebrokenlijnB5': [[[-19.5,-9.5],[-17,-9.5],[0,-4.25],[17,-9.5],[19.5,-9.5]],3],
-    'gebrokenlijnE5': [[[-19.5,9.5],[-17,9.5],[0,4.25],[17,9.5],[19.5,9.5]],3],
-    'gebrokenlijnB': [[[-19.5,-9.5],[-17,-9.5],[0,0],[17,-9.5],[19.5,-9.5]],3],
-    'gebrokenlijnE': [[[-19.5,9.5],[-17,9.5],[0,0],[17,9.5],[19.5,9.5]],3],
+    'volteEBr': [[[0,-9.5],[9.5,-9.5],[9.5,9.5],[-9.5,9.5],[-9.5,-9.5],[0,-9.5]],9.5],
+    'volteEBl': [[[0,-9.5],[-9.5,-9.5],[-9.5,9.5],[9.5,9.5],[9.5,-9.5],[0,-9.5]],9.5],
+    'volteAr': [[[-19.5,0],[-19.5,-9.5],[0,-9.5],[0,9.5],[-19.5,9.5],[-19.5,0]],9.5],
+    'volteAl': [[[-19.5,0],[-19.5,9.5],[0,9.5],[0,-9.5],[-19.5,-9.5],[-19.5,0]],9.5],
+    'volteCr': [[[19.5,0],[19.5,9.5],[0,9.5],[0,-9.5],[19.5,-9.5],[19.5,0]],9.5],
+    'volteCl': [[[19.5,0],[19.5,-9.5],[0,-9.5],[0,9.5],[19.5,9.5],[19.5,0]],9.5],
+    'gebrokenlijnMF5': [[[-19.5,-9.5],[-17,-9.5],[0,-4.25],[17,-9.5],[19.5,-9.5]],3],
+    'gebrokenlijnFM5': [[[19.5,-9.5],[17,-9.5],[0,-4.25],[-17,-9.5],[-19.5,-9.5]],3],
+    'gebrokenlijnHK5': [[[-19.5,9.5],[-17,9.5],[0,4.25],[17,9.5],[19.5,9.5]],3],
+    'gebrokenlijnKH5': [[[19.5,9.5],[17,9.5],[0,4.25],[-17,9.5],[-19.5,9.5]],3],
+    'gebrokenlijnMXF': [[[-19.5,-9.5],[-17,-9.5],[0,0],[17,-9.5],[19.5,-9.5]],3],
+    'gebrokenlijnFXM': [[[19.5,-9.5],[17,-9.5],[0,0],[-17,-9.5],[-19.5,-9.5]],3],
+    'gebrokenlijnHXK': [[[-19.5,9.5],[-17,9.5],[0,0],[17,9.5],[19.5,9.5]],3],
+    'gebrokenlijnKXH': [[[19.5,9.5],[17,9.5],[0,0],[-17,9.5],[-19.5,9.5]],3],
     'vanhandveranderenMK': [[[-19.5,-9.5],[19.5,9.5]],3],
-    'vanhandveranderenFH': [[[19.5,-9.5],[-19.5,9.5]],3]
+    'vanhandveranderenKM': [[[19.5,9.5],[-19.5,-9.5]],3],
+    'vanhandveranderenFH': [[[19.5,-9.5],[-19.5,9.5]],3],
+    'vanhandveranderenHF': [[[-19.5,9.5],[19.5,-9.5]],3],
+    'vanhandveranderenFE': [[[19.5,-9.5],[0,9.5]],3],
+    'vanhandveranderenEF': [[[0,9.5],[19.5,-9.5]],3],
+    'vanhandveranderenME': [[[-19.5,-9.5],[0,9.5]],3],
+    'vanhandveranderenEM': [[[0,9.5],[-19.5,-9.5]],3],
+    'vanhandveranderenKB': [[[19.5,9.5],[0,-9.5]],3],
+    'vanhandveranderenBK': [[[0,-9.5],[19.5,9.5]],3],
+    'vanhandveranderenHB': [[[-19.5,9.5],[0,-9.5]],3],
+    'vanhandveranderenBH': [[[0,-9.5],[-19.5,9.5]],3],
+    'afwendenBE': [[[0, -9.5], [0, 9.5]], 3],
+    'afwendenEB': [[[0, 9.5], [0, -9.5]], 3],
+    'afwendenAC': [[[19.5, 0], [-19.5, 0]], 3],
+    'afwendenCA': [[[-19.5, 0], [19.5, 0]], 3]
 }
 
 
@@ -39,6 +63,7 @@ Object.keys(paths).reduce(function(pending, name) {
     return pending.then(function() {
         clear();
         var line = createPath.apply(null,paths[name]).set(defaultStyle);
+        var stroke = createStroke(line, 4);
         paper.view.update();
         return renderImage(path.resolve('masks',name+'.png'), canvas);
     })
@@ -58,7 +83,7 @@ function clear() {
 function renderImage(path,canvas) {
     return new Promise(function(resolve,reject) {
         var out = fs.createWriteStream(path)
-        makeBinary(canvas);
+        // makeBinary(canvas);
 
         var stream = canvas.pngStream();
 
@@ -83,6 +108,31 @@ function makeBinary(canvas) {
         data[i] = (data[i]>128)?255:0;
     }
     ctx.putImageData(imageData, 0, 0);
+}
+
+
+function createStroke(path, strokeWidth) {
+    //not at 0 and length, because the tangent is not calculated correctly at that point
+    createRectAt(path, 0.0001, strokeWidth);
+    for (var i=1; i< path.length; i++) {
+        createRectAt(path, i, strokeWidth);
+    }
+    createRectAt(path, path.length-0.0001, strokeWidth);
+    path.remove();
+    return path.set({
+        strokeWidth: strokeWidth
+    });
+}
+
+function createRectAt(path, offset, strokeWidth) {
+    var hw = strokeWidth;// / 2;
+    var heading = path.getTangentAt(offset).angle,
+    var color = {hue: heading, saturation: 1, brightness: 1};
+    paper.Path.Rectangle([-1.5,-hw],[1.5,hw]).set({
+        position: path.getPointAt(offset),
+        rotation: heading,
+        fillColor: color
+    });
 }
 
 function createPath(positions, radius) {
