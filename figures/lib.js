@@ -20,7 +20,10 @@ function promisify(fn) {
 //getPixels, but one channel
 function getBinary(path) {
     return getPixels(path).then(function(pixels) {
-        return pixels.pick(null,null,0);
+        return {
+            path: path,
+            img: pixels.pick(null,null,0)
+        }
     });
 }
 

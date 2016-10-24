@@ -40,7 +40,7 @@ var overlap = cwise({
     }
 });
 
-var points = data.points.slice(400,750);
+var points = data.points;//.slice(400,750);
 var cfiltered = helpers.process(points, helpers.lowPass(0.1));
 var wfiltered = cfiltered.map(helpers.homography(data.M)).map(p => {
     return [(p[0]/10)-20,(p[1]/10)-10]
@@ -49,15 +49,18 @@ var wfiltered = cfiltered.map(helpers.homography(data.M)).map(p => {
 lib.getMasks().then(function(masks) {
     // masks = masks.slice(8,9);
     var ranges = masks.map(function(mask) {
-        return wfiltered.map(function(point) {
-            var sdr = makeSDR(point);
-            // log(sdr);
-            var arr = ndarray(sdr,[w,w/2], [1,100]);
-            var lap = overlap(mask, arr);
-            // savePixels(arr,'png').pipe(fs.createWriteStream('./foo.png'));
-            // console.log(lap);
-            return lap;
-        })
+        return {
+            mask: mask.path,
+            data: wfiltered.map(function(point) {
+                var sdr = makeSDR(point);
+                // log(sdr);
+                var arr = ndarray(sdr,[w,w/2], [1,100]);
+                var lap = overlap(mask.img, arr);
+                // savePixels(arr,'png').pipe(fs.createWriteStream('./foo.png'));
+                // console.log(lap);
+                return lap;
+            })
+        }
     });
     var data = JSON.stringify(ranges, null, 2);
     fs.writeFileSync('./integrated.json',data);

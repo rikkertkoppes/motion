@@ -9,6 +9,7 @@
         height: 75px;
         border: 1px solid black;
         float: left;
+        width: 1500px;
     }
     .mask {
         overflow: auto;
@@ -20,74 +21,58 @@
     .sample {
         opacity: 0.5;
         position: absolute;
-        left: 0;
+        left: 100px;
+    }
+    .frames {
+        padding-left: 150px;
+        overflow: auto;
+    }
+    .frames img {
+        width: 84px;
+        float: left;
+        border-left: 1px solid red;
+        box-sizing: border-box;
     }
     </style>
 </head>
 <body>
-    <div class="mask">
-        <img src="masks/gebrokenlijnB.png">
-        <img src="masks/gebrokenlijnB.png">
-        <img src="testVolte.png" class="sample">
-        <div id="m1" class="plot"></div>
-    </div>
-    <div class="mask">
-        <img src="masks/gebrokenlijnB5.png">
-        <img src="masks/gebrokenlijnB5.png">
-        <img src="testVolte.png" class="sample">
-        <div id="m2" class="plot"></div>
-    </div>
-    <div class="mask">
-        <img src="masks/gebrokenlijnE.png">
-        <img src="masks/gebrokenlijnE.png">
-        <img src="testVolte.png" class="sample">
-        <div id="m3" class="plot"></div>
-    </div>
-    <div class="mask">
-        <img src="masks/gebrokenlijnE5.png">
-        <img src="masks/gebrokenlijnE5.png">
-        <img src="testVolte.png" class="sample">
-        <div id="m4" class="plot"></div>
-    </div>
-    <div class="mask">
-        <img src="masks/vanhandveranderenFH.png">
-        <img src="masks/vanhandveranderenFH.png">
-        <img src="testVolte.png" class="sample">
-        <div id="m5" class="plot"></div>
-    </div>
-    <div class="mask">
-        <img src="masks/vanhandveranderenMK.png">
-        <img src="masks/vanhandveranderenMK.png">
-        <img src="testVolte.png" class="sample">
-        <div id="m6" class="plot"></div>
-    </div>
-    <div class="mask">
-        <img src="masks/volteA.png">
-        <img src="masks/volteA.png">
-        <img src="testVolte.png" class="sample">
-        <div id="m7" class="plot"></div>
-    </div>
-    <div class="mask">
-        <img src="masks/volteC.png">
-        <img src="masks/volteC.png">
-        <img src="testVolte.png" class="sample">
-        <div id="m8" class="plot"></div>
-    </div>
-    <div class="mask">
-        <img src="masks/volteEB.png">
-        <img src="masks/volteEB.png">
-        <img src="testVolte.png" class="sample">
-        <div id="m9" class="plot"></div>
+    <div id="canvas"></div>
+    <div class="frames">
+        <img src="test/test0.png" alt="">
+        <img src="test/test1.png" alt="">
+        <img src="test/test2.png" alt="">
+        <img src="test/test3.png" alt="">
+        <img src="test/test4.png" alt="">
+        <img src="test/test5.png" alt="">
+        <img src="test/test6.png" alt="">
+        <img src="test/test7.png" alt="">
+        <img src="test/test8.png" alt="">
+        <img src="test/test9.png" alt="">
+        <img src="test/test10.png" alt="">
+        <img src="test/test11.png" alt="">
+        <img src="test/test12.png" alt="">
+        <img src="test/test13.png" alt="">
+        <img src="test/test14.png" alt="">
+        <img src="test/test15.png" alt="">
+        <img src="test/test16.png" alt="">
+        <img src="test/test17.png" alt="">
     </div>
     <script>
+        var canvas = document.getElementById('canvas');
         // fetch('../data/F3JVH-cam.json').then(function(response) {
         fetch('./integrated.json').then(function(response) {
             return response.json()
         }).then(function(data) {
             data.forEach(function(figure,i) {
-                var total = figure.reduce((t,v) => t+v, 0);
+                var mask = document.createElement('div');
+                mask.className = 'mask';
+                mask.innerHTML = '<img src="'+figure.mask+'">'
+                    //+ '<img src="'+figure.mask+'"><img src="testVolte.png" class="sample"><img src="testVolte.png">'
+                    + '<div id="m'+i+'" class="plot"></div>';
+                document.body.appendChild(mask);
+                var total = figure.data.reduce((t,v) => t+v, 0);
                 console.log(total);
-                plot('m'+(i+1),toSeries(figure))
+                plot('m'+i,toSeries(figure.data));
             })
         });
 
@@ -113,7 +98,7 @@
                         // rangeslider: {}
                     },
                 },{
-                    scrollZoom: true
+                    // scrollZoom: true
                 }
             );
             allPlots.push(el);

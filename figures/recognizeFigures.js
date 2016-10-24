@@ -8,7 +8,7 @@ var cwise = require("cwise");
 lib.getMasks().then(function(masks) {
     lib.getBinary('./testVolte.png').then(function(sample) {
         console.log(masks.length);
-        var scores = classify(sample, masks);
+        var scores = classify(sample.img, masks);
         console.log(scores);
     });
 }, function(err) {
@@ -33,6 +33,6 @@ var overlap = cwise({
 
 function classify(sample, masks) {
     return masks.map(function(mask) {
-        return overlap(mask, sample);
+        return overlap(mask.img, sample);
     });
 }
