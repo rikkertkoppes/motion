@@ -126,7 +126,7 @@ function createStroke(path, strokeWidth) {
 
 function createRectAt(path, offset, strokeWidth) {
     var hw = strokeWidth;// / 2;
-    var heading = path.getTangentAt(offset).angle,
+    var heading = path.getTangentAt(offset).angle;
     var color = {hue: heading, saturation: 1, brightness: 1};
     paper.Path.Rectangle([-1.5,-hw],[1.5,hw]).set({
         position: path.getPointAt(offset),
