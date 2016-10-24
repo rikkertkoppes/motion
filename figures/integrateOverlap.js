@@ -73,7 +73,7 @@ var wfiltered = cfiltered.map(helpers.homography(data.M)).map(p => {
 });
 var wfilteredSDR = wfiltered.map(function(point, i) {
     var heading;
-    var lookback = 5;
+    var lookback = 20;
     //TODO: filter heading somewhat
     if (i < lookback) {
         heading = 0;
