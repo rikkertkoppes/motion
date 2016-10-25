@@ -1,0 +1,82 @@
+[{
+    "mask": ["hoefslagAl", "hoefslagBl", "hoefslagCl"],
+    "cmd": "1.  A-F-B-MBinnenkomen in arbeidsdraf op linkerhand"
+}, {
+    "mask": ["hoefslagEl"]
+}, {
+    "mask": ["volteEBl"],
+    "cmd": "2.  E-B-EGrote volte"
+}, {
+    "mask": ["hoefslagEl", "hoefslagAl"]
+}, {
+    "mask": ["vanhandveranderenFH"],
+    "cmd": "3.  F-X-HVan hand veranderen"
+}, {
+    "mask": ["hoefslagCr", "hoefslagBr"]
+}, {
+    "mask": ["volteEBr"],
+    "cmd": "4.  B-EHalve grote volte"
+}, {
+    "mask": ["hoefslagEr", "hoefslagCr"],
+    "cmd": "5.  Tussen H en CArbeidsstap"
+}, {
+    "mask": ["vanhandveranderenMK"],
+    "cmd": ["6.  M-X-KVan hand veranderen, daarbij",
+            "7.  Tussen M en XDe teugel langer laten worden (hals laten strekken) en",
+            "8.  Tussen X en KTeugels op maat maken"]
+}, {
+    "mask": ["hoefslagAl"],
+    "cmd": "9.  Tussen A en F Arbeidsdraf"
+}, {
+    "mask": ["hoefslagBl"]
+}, {
+    "mask": ["volteEBl"],
+    "cmd": "10.  B-E-BGrote volte"
+}, {
+    "mask": ["hoefslagBl","hoefslagCl"],
+    "cmd": "11.  Tussen M en CArbeidsgalop links aanspringen"
+}, {
+    "mask": ["hoefslagEl","hoefslagAl","hoefslagBl"],
+    "cmd": "12.  Rijbaan 1x rond"
+}, {
+    "mask": ["hoefslagCl"],
+    "cmd": "13.  Tussen M en CArbeidsdraf"
+}, {
+    "mask": ["hoefslagEl","vanhandveranderenEF"],
+    "cmd": "14.  E-F       Van hand veranderen"
+}, {
+    "mask": ["hoefslagAr","hoefslagEr"]
+}, {
+    "mask": ["volteEBr"],
+    "cmd": "15.  E-B-EGrote volte"
+}, {
+    "mask": ["hoefslagEr", "hoefslagCr"],
+    "cmd": "16.  Tussen H en CArbeidsgalop rechts aanspringen"
+}, {
+    "mask": ["hoefslagBr","hoefslagAr","hoefslagEr"],
+    "cmd": "17.  Rijbaan 1x rond"
+}, {
+    "mask": ["hoefslagCr"],
+    "cmd": "18.  Tussen H en CArbeidsdraf"
+}, {
+    "mask": ["gebrokenlijnMF5"],
+    "cmd": "19.  M-FGebroken lijn 5 meter"
+}, {
+    "mask": ["hoefslagAr", "hoefslagEr"]
+}, {
+    "mask": ["afwendenEB"],
+    "cmd": "20.  EBAfwendenLinkerhand"
+}, {
+    "mask": ["hoefslagBl","hoefslagCl"]
+}, {
+    "mask": ["gebrokenlijnHK5"],
+    "cmd": "21.  H-KGebroken lijn 5 meter"
+}, {
+    "mask": ["hoefslagAl","afwendenAC"],
+    "cmd": ["22.  AAfwenden",
+            "23.  Tussen D en X   Arbeidsstap",
+            "24.  Tussen X en GHalthouden en groeten"]
+}, {
+    "mask": ["hoefslagCr","hoefslagBr"],
+    "cmd": "25.  Voorwaarts in stap de rijbaan verlaten"
+}]
