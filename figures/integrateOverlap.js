@@ -105,7 +105,7 @@ lib.getMasks().then(function(masks) {
                 // savePixels(crop,'png').pipe(fs.createWriteStream('./debug/'+i+'mask.png'));
                 // savePixels(sdr.sdr,'png').pipe(fs.createWriteStream('./debug/'+i+'sdr.png'));
                 // console.log(crop.shape,sdr.sdr.shape);
-                var lap = overlap(crop, sdr.sdr, getHue) / maskSize;
+                var lap = overlap(crop, sdr.sdr, getHue);// / maskSize;
                 // console.log(lap);
                 return lap;
             })//.reduce(helpers.lowPass(0.05), [])
