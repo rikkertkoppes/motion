@@ -97,18 +97,26 @@ function maskName(sequence, location) {
     return sequence[location[0]].mask[location[1]];
 }
 
-//expect the next mask
-function expectNext(sequence, recognizers, current) {
+//gets the next figure location, given the current
+function getNext(sequence, current) {
     var mask = sequence[current[0]].mask;
     if (current[1] < mask.length -1) {
-        return expectMask(sequence, recognizers, [current[0],current[1]+1]);
+        return [current[0],current[1]+1];
     } else if (current[0] < sequence.length-1) {
-        return expectMask(sequence, recognizers, [current[0] + 1, 0]);
+        return [current[0] + 1, 0];
     } else {
-        //done
-        console.log('done');
+        //no next
         return current;
     }
+}
+
+//expect the next mask
+function expectNext(sequence, recognizers, current) {
+    return expectMask(sequence, recognizers, getNext(sequence, current));
+}
+
+function findNext(sequence, name, current) {
+
 }
 
 //adder
@@ -116,12 +124,17 @@ function aggregateTo(recognizer) {
     return function(value, timestep) {
         recognizer.aggregate += value;
         if (value > 0 && recognizer.aggregate > recognizer.trigger) {
-            console.log('match',recognizer.name, recognizer.aggregate, timestep, currentMask);
-            //recognition, inhibit other recognizers
-            inhibitOthers(seq, recognizers, currentMask);
-            //expect the next
-            currentMask = expectNext(seq, recognizers, currentMask);
-            // console.log('->', maskName(seq, currentMask));
+            // if (recognizer.name == maskName(seq, currentMask)) {
+                console.log('found expected',recognizer.name, recognizer.aggregate, timestep, currentMask);
+                //recognition, inhibit other recognizers
+                inhibitOthers(seq, recognizers, currentMask);
+                //expect the next
+                currentMask = expectNext(seq, recognizers, currentMask);
+                // console.log('->', maskName(seq, currentMask));
+            // } else {
+            //     console.log('found unexpected', recognizer.name, maskName(seq, currentMask));
+            //     //are we behind or ahead?
+            // }
         }
     }
 }

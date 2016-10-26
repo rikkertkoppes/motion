@@ -22,3 +22,9 @@ goal: create graphical black/white SDR representations of all figures
 - EB afwenden
 - AC afwenden
 - van hand veranderen diagonaal
+
+
+## optimizations
+
+- after the fact, we are able to identify blocks of contiguous activity
+- while data comes in, we may at least require some number of frames of activity before recognition

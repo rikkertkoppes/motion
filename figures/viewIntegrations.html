@@ -66,7 +66,7 @@
             data.forEach(function(figure,i) {
                 var mask = document.createElement('div');
                 mask.className = 'mask';
-                mask.innerHTML = '<img src="'+figure.mask+'">'
+                mask.innerHTML = '<img src="'+figure.mask+'" title="'+figure.mask+'">'
                     //+ '<img src="'+figure.mask+'"><img src="testVolte.png" class="sample"><img src="testVolte.png">'
                     + '<div id="m'+i+'" class="plot"></div>';
                 document.body.appendChild(mask);
