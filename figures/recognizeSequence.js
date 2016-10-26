@@ -21,14 +21,16 @@ var seq = require('./def/F3B2012.json');
 //10000 is about 200 frames of overlap
 
 //level at which we recognize a mask
-// var higherTrigger = 10000;
-var higherTrigger = 5000;
+var higherTrigger = 10000;
+// var higherTrigger = 5000;
 //level at which we recognize an expected mask
 var lowerTrigger = 500;
 
 //set up recognizers
 var recognizers = data.reduce((index, map) => {
-    index[map.mask.match(/(\w*)\.png/)[1]] = {
+    var name = map.mask.match(/(\w*)\.png/)[1];
+    index[name] = {
+        name: name,
         mask: map.mask,
         aggregate: 0,
         trigger: higherTrigger
@@ -114,7 +116,7 @@ function aggregateTo(recognizer) {
     return function(value, timestep) {
         recognizer.aggregate += value;
         if (value > 0 && recognizer.aggregate > recognizer.trigger) {
-            console.log('oi',recognizer.mask, recognizer.aggregate, timestep, currentMask);
+            console.log('match',recognizer.name, recognizer.aggregate, timestep, currentMask);
             //recognition, inhibit other recognizers
             inhibitOthers(seq, recognizers, currentMask);
             //expect the next
