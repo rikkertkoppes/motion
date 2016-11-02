@@ -24,7 +24,7 @@ var seq = require('./def/F3B2012.json');
 var higherTrigger = 10000;
 // var higherTrigger = 5000;
 //level at which we recognize an expected mask
-var lowerTrigger = 500;
+var lowerTrigger = 400;
 
 //set up recognizers
 var recognizers = data.reduce((index, map) => {
@@ -58,7 +58,8 @@ data[0].data.forEach((_, timestep) => {
 
 // !!!!!!!!!! THIS WORKS, except for the last gebroken lijn (hardly shows up in the overlap)
 // TODO: verify with other data, list the magic numbers somewhere
-// TODO: do this while data comes in
+// TODO: do this while data comes in -> mhubListener
+// TODO: move useful functions to helpers.js
 
 // console.log(getRecognizers(recognizers));
 
