@@ -14,6 +14,7 @@ var ndarray = require('ndarray');
 var cwise = require('cwise');
 var lib = require('./lib.js');
 var color = require('color');
+var client;
 
 //sequence
 var seq = require('./def/F3B2012.json');
@@ -55,7 +56,7 @@ function handleMessage(masks) {
         if (msg.topic === 'reset') {
             console.log('reset');
             reset(masks);
-        } else {
+        } else if (msg.topic === 'location') {
             var points = msg.data.points;
             var matrix = msg.data.matrix;
             // camera coordinates with a lowpass filter
@@ -138,11 +139,15 @@ function makeSDR(heading) {
 
 lib.getMasks().then(function(masks) {
     console.log('masks loaded, ready for stream');
-    var client = new MClient("ws://localhost:13900");
+    client = new MClient("ws://localhost:13900");
     client.on("message", handleMessage(masks));
+    // client.on("message", function(message) {
+    //     console.log(message.topic, message.data, message.headers);
+    // });
     client.on("open", function() {
         client.subscribe("default"); // or e.g. client.subscribe("blib", "my:*");
-        // client.publish("test", "my:topic", 42, { some: "header" });
+        // client.publish("default", "figure", {foo: 42});
+        client.publish("default", "figure", "42");
     });
 });
 
@@ -220,8 +225,9 @@ function aggregateTo(recognizer) {
         if (value > 0 && recognizer.aggregate > recognizer.trigger) {
             // if (recognizer.name == maskName(seq, currentMask)) {
                 var cmd = [].concat(getAction(seq, currentMask).cmd||[]).join('\n');
-                console.log(cmd);
                 // console.log('found expected',recognizer.name, recognizer.aggregate, timestep, currentMask);
+                console.log(cmd);
+                client.publish("default", "figure", cmd);
                 //recognition, inhibit other recognizers
                 inhibitOthers(seq, recognizers, currentMask);
                 //expect the next
