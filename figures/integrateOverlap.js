@@ -32,10 +32,12 @@ var overlap = cwise({
     },
     body: function(mask, sample, getHue) {
         var mc = getHue(mask[0],mask[1],mask[2]);
-        var sc = getHue(sample[0],sample[1],sample[2]);
+        // var sc = getHue(sample[0],sample[1],sample[2]);
+        var sc = sample[1];
         //do we have a non black pixel?
         var maskPixel = ((mask[0]+mask[1]+mask[2]) > 0);
-        var samplePixel = ((sample[0]+sample[1]+sample[2]) > 0);
+        // var samplePixel = ((sample[0]+sample[1]+sample[2]) > 0);
+        var samplePixel = sample[0] > 0;
         //work correctly across 360 boundary
         var diff = Math.min(360 - Math.abs(mc-sc), Math.abs(mc-sc))
         this.overlap += (maskPixel && samplePixel && (diff < 20)) ? 1 : 0;
@@ -43,22 +45,6 @@ var overlap = cwise({
     },
     post: function() {
         return this.overlap;
-    }
-});
-
-var nonBlack = cwise({
-    args: [{blockIndices: -1}],
-    pre: function() {
-        this.nonBlack = 0;
-    },
-    body: function(img) {
-        //do we have a non black pixel?
-        var maskPixel = ((img[0]+img[1]+img[2]) > 0);
-        this.nonBlack += maskPixel ? 1 : 0;
-
-    },
-    post: function() {
-        return this.nonBlack;
     }
 });
 
@@ -82,7 +68,8 @@ var wfilteredSDR = wfiltered.map(function(point, i) {
         heading = 90 - Math.atan2.apply(null,helpers.diff(point,other)) * 180 / Math.PI;
     }
     // var arr = ndarray(makeSDR(point, heading),[w,w/2,4],[4,400,1]);
-    var arr = ndarray(makeSDR(point, heading),[10,10,4],[4,40,1]);
+    var arr = ndarray(makeSDR(heading),[10,10,2],[2,20,1]);
+    // var arr = ndarray(makeSDR(heading),[10,10],[1,10]);
     // savePixels(arr,'png').pipe(fs.createWriteStream('./foo.png'));
     return {
         point: point,
@@ -93,7 +80,6 @@ var wfilteredSDR = wfiltered.map(function(point, i) {
 lib.getMasks().then(function(masks) {
     // masks = masks.slice(28,29);
     var ranges = masks.map(function(mask) {
-        var maskSize = nonBlack(mask.img);
         return {
             mask: mask.path,
             data: wfilteredSDR.map(function(sdr,i) {
@@ -128,16 +114,32 @@ function getHue(r,g,b) {
 }
 
 //creates an sdr from a point
-function makeSDR(point, heading) {
-    // console.log(heading);
-    paper.project.activeLayer.removeChildren();
-    paper.Path.Rectangle(new paper.Point([-2, -2]), new paper.Point([2, 2])).set({ fillColor: 'black' });
-    new paper.Path([[0,0],[0,0.000001]]).set(defaultStyle).set({
-        strokeColor: {hue: heading, saturation: 1, brightness: 1}
-    });
-    paper.view.update();
-    // renderImage('./testpoint.png',canvas);
-    return makeArray(canvas);
+// function makeSDR(heading) {
+//     // console.log(heading);
+//     paper.project.activeLayer.removeChildren();
+//     paper.Path.Rectangle(new paper.Point([-2, -2]), new paper.Point([2, 2])).set({ fillColor: 'black' });
+//     new paper.Path([[0,0],[0,0.000001]]).set(defaultStyle).set({
+//         strokeColor: {hue: heading, saturation: 1, brightness: 1}
+//     });
+//     paper.view.update();
+//     // renderImage('./testpoint.png',canvas);
+//     return makeArray(canvas);
+// }
+
+
+function makeSDR(heading) {
+    var dot = [0,0,0,1,1,1,1,0,0,0,
+               0,1,1,1,1,1,1,1,1,0,
+               0,1,1,1,1,1,1,1,1,0,
+               1,1,1,1,1,1,1,1,1,1,
+               1,1,1,1,1,1,1,1,1,1,
+               1,1,1,1,1,1,1,1,1,1,
+               1,1,1,1,1,1,1,1,1,1,
+               0,1,1,1,1,1,1,1,1,0,
+               0,1,1,1,1,1,1,1,1,0,
+               0,0,0,1,1,1,1,0,0,0];
+    hdot = dot.reduce((arr, p) => arr.concat(p, p*heading),[]);
+    return hdot;
 }
 
 function makeArray(canvas) {
