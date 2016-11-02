@@ -154,6 +154,10 @@ def run(videofile, ws):
         if ret == False:
             break
 
+        # create jpg frame for restreaming
+        ret, jpeg = cv2.imencode('.jpg', img)
+        # TODO: actually stream: http://www.chioka.in/python-live-video-streaming-example/
+
         # frame = imutils.resize(img, width=500)
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         gray = cv2.GaussianBlur(gray, (11, 11), 0)
