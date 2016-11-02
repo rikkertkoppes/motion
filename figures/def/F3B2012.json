@@ -17,13 +17,15 @@
     "mask": ["volteEBr"],
     "cmd": "4.  B-E Halve grote volte"
 }, {
-    "mask": ["hoefslagEr", "hoefslagCr"],
-    "cmd": "5.  Tussen H en CArbeidsstap"
+    "mask": ["hoefslagEr"]
+}, {
+    "mask": ["hoefslagCr"],
+    "cmd": "5.  Tussen H en C Arbeidsstap"
 }, {
     "mask": ["vanhandveranderenMK"],
     "cmd": ["6.  M-X-K Van hand veranderen, daarbij",
-            "7.  Tussen M en XDe teugel langer laten worden (hals laten strekken) en",
-            "8.  Tussen X en KTeugels op maat maken"]
+            "7.  Tussen M en X De teugel langer laten worden (hals laten strekken) en",
+            "8.  Tussen X en K Teugels op maat maken"]
 }, {
     "mask": ["hoefslagAl"],
     "cmd": "9.  Tussen A en F Arbeidsdraf"
@@ -33,14 +35,16 @@
     "mask": ["volteEBl"],
     "cmd": "10.  B-E-B Grote volte"
 }, {
-    "mask": ["hoefslagBl","hoefslagCl"],
-    "cmd": "11.  Tussen M en CArbeidsgalop links aanspringen"
+    "mask": ["hoefslagBl"]
+}, {
+    "mask": ["hoefslagCl"],
+    "cmd": "11.  Tussen M en C Arbeidsgalop links aanspringen"
 }, {
     "mask": ["hoefslagEl","hoefslagAl","hoefslagBl"],
     "cmd": "12.  Rijbaan 1x rond"
 }, {
     "mask": ["hoefslagCl"],
-    "cmd": "13.  Tussen M en CArbeidsdraf"
+    "cmd": "13.  Tussen M en C Arbeidsdraf"
 }, {
     "mask": ["hoefslagEl","vanhandveranderenEF"],
     "cmd": "14.  E-F Van hand veranderen"
@@ -50,14 +54,16 @@
     "mask": ["volteEBr"],
     "cmd": "15.  E-B-E Grote volte"
 }, {
-    "mask": ["hoefslagEr", "hoefslagCr"],
-    "cmd": "16.  Tussen H en CArbeidsgalop rechts aanspringen"
+    "mask": ["hoefslagEr"]
+}, {
+    "mask": ["hoefslagCr"],
+    "cmd": "16.  Tussen H en C Arbeidsgalop rechts aanspringen"
 }, {
     "mask": ["hoefslagBr","hoefslagAr","hoefslagEr"],
     "cmd": "17.  Rijbaan 1x rond"
 }, {
     "mask": ["hoefslagCr"],
-    "cmd": "18.  Tussen H en CArbeidsdraf"
+    "cmd": "18.  Tussen H en C Arbeidsdraf"
 }, {
     "mask": ["gebrokenlijnMF5"],
     "cmd": "19.  M-F Gebroken lijn 5 meter"
