@@ -29,7 +29,7 @@ function getBinary(path) {
 
 function getMasks() {
     return glob('./masks/*.png').then(function(paths) {
-        console.log(paths);
+        // console.log(paths);
         return Promise.all(paths.map(getBinary));
     });
 }
