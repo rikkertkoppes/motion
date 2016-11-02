@@ -118,10 +118,10 @@ def onmouse(event,x,y,flags,param):
         data['M'] = M.tolist()
         # print M
 
-def onresult(ws, points):
+def onresult(ws, points, M):
     global data
     # print json.dumps(points)
-    ws.send('{"type":"publish","node":"test","topic":"location","data":'+json.dumps(points)+'}')
+    ws.send('{"type":"publish","node":"default","topic":"location","data":{"points":'+json.dumps(points)+', "matrix":'+json.dumps(M.tolist())+'}}')
 
 def transformPoint(matrix, point):
     r = np.dot(M, [point[0],point[1],1])
@@ -146,6 +146,7 @@ def run(videofile, ws):
     lastFrame = None
     cv2.namedWindow("frame", 1)
     cv2.setMouseCallback("frame", onmouse)
+    ws.send('{"type":"publish","node":"default","topic":"reset"}')
     while(True):
         # Capture frame-by-frame
         ret, img = cap.read()
@@ -176,7 +177,7 @@ def run(videofile, ws):
                     cv2.rectangle(img, p1, p2, (0,255,0), 2)
                     cv2.circle(img, p3, 4, (255,0,0), -1)
                 if M is not None:
-                    onresult(ws, [transformPoint(M,p) for p in bottoms])
+                    onresult(ws, bottoms, M)
                     # data['points'].append(points)
                     data['points'].append(bottoms)
 
