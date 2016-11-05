@@ -16,14 +16,23 @@ import numpy as np
 import itertools
 import websocket
 import json
+import thread
 
 # ws = None
 ws = websocket.WebSocket()
 # ws.connect("ws://192.168.1.180:13900")
 ws.connect("ws://localhost:13900")
 
+cmd = ''
+
 def on_message(ws, message):
-    print message
+    global cmd
+    data = json.loads(message)
+    # print data['topic']
+    if (data['topic'] == 'figure'):
+        if (data['data'] != ''):
+            print data['data']
+            cmd = data['data']
 
 def on_error(ws, error):
     print error
@@ -32,17 +41,20 @@ def on_close(ws):
     print "### closed ###"
 
 def on_open(ws):
-    ws.send('{"type":"subscribe","node":"test"}')
+    ws.send('{"type":"subscribe","node":"default"}')
 
+def run(*args):
+    ws = websocket.WebSocketApp("ws://localhost:13900/",
+                                on_message = on_message,
+                                on_error = on_error,
+                                on_close = on_close)
+    ws.on_open = on_open
 
-# websocket.enableTrace(True)
-# ws = websocket.WebSocketApp("ws://localhost:13900/",
-#                           on_message = on_message,
-#                           on_error = on_error,
-#                           on_close = on_close)
-ws.on_message = on_message
-ws.on_open = on_open
-# ws.run_forever()
+    ws.run_forever()
+
+# start the websocket
+thread.start_new_thread(run, ())
+
 
 videofile = sys.argv[1]
 datafile = sys.argv[2]
@@ -140,7 +152,7 @@ def drawBounds(dst, rect, scale, size):
 
 
 def run(videofile, ws):
-    global scale, offset
+    global scale, offset, cmd
     # cap = cv2.VideoCapture(0)
     cap = cv2.VideoCapture(videofile)
     lastFrame = None
@@ -200,6 +212,9 @@ def run(videofile, ws):
         bkg[y:y + scaled.shape[0], x:x + scaled.shape[1]] = scaled
         if len(rect) > 1:
             drawBounds(bkg, rect, scale, (w,h))
+
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        cv2.putText(bkg,cmd,(10,500), font, 1, (255,255,255),2)
         cv2.imshow('frame',bkg)
 
 
