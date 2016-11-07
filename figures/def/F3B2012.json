@@ -1,18 +1,24 @@
 [{
     "mask": ["hoefslagAl", "hoefslagBl", "hoefslagCl"],
-    "cmd": "1.  A-F-B-M Binnenkomen in arbeidsdraf op linkerhand"
+    "cmd": "1.  A-F-B-M Binnenkomen in arbeidsdraf op linkerhand",
+    "line": [[19.5,0],[19.5,-9.5],[-13.5,-9.5],3]
 }, {
-    "mask": ["hoefslagEl"]
+    "mask": ["hoefslagEl"],
+    "line": [[-13.5,-9.5],[-19.5,-9.5],[-19.5,9.5],[0,9.5],3]
 }, {
     "mask": ["volteEBl"],
-    "cmd": "2.  E-B-E Grote volte"
+    "cmd": "2.  E-B-E Grote volte",
+    "line": [[0,9.5],[9.5,9.5],[9.5,-9.5],[-9.5,-9.5],[-9.5,9.5],[0,9.5],9.5]
 }, {
-    "mask": ["hoefslagEl", "hoefslagAl"]
+    "mask": ["hoefslagEl", "hoefslagAl"],
+    "line": [[0,9.5],[19.5,9.5],[19.5,-9.5],[13.5,-9.5],3]
 }, {
     "mask": ["vanhandveranderenFH"],
-    "cmd": "3.  F-X-H Van hand veranderen"
+    "cmd": "3.  F-X-H Van hand veranderen",
+    "line": [[13.5,-9.5],[-13.5,9.5],3]
 }, {
-    "mask": ["hoefslagCr", "hoefslagBr"]
+    "mask": ["hoefslagCr", "hoefslagBr"],
+    "line": [[]]
 }, {
     "mask": ["volteEBr"],
     "cmd": "4.  B-E Halve grote volte"
