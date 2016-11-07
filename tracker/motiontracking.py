@@ -9,6 +9,9 @@
 # filter (kalman?) to get rid of mirror images
 # get the mid bottom point of the blob, which is the position
 # perspective transform that position
+# 
+# use https://github.com/umlaeute/v4l2loopback to also stream the video over webRTC
+# use vlc (although slow) or uv4l http://www.linux-projects.org/uv4l/ which may be better (for rpi) or janus https://www.rs-online.com/designspark/building-a-raspberry-pi-2-webrtc-camera
 
 import sys
 import cv2
@@ -155,6 +158,8 @@ def run(videofile, ws):
     global scale, offset, cmd
     # cap = cv2.VideoCapture(0)
     cap = cv2.VideoCapture(videofile)
+    fourcc = cv2.cv.CV_FOURCC('M','J','P','G')
+    out = cv2.VideoWriter('output.avi', fourcc, 30.0, (800,600))
     lastFrame = None
     cv2.namedWindow("frame", 1)
     cv2.setMouseCallback("frame", onmouse)
@@ -214,8 +219,13 @@ def run(videofile, ws):
             drawBounds(bkg, rect, scale, (w,h))
 
         font = cv2.FONT_HERSHEY_SIMPLEX
-        cv2.putText(bkg,cmd,(10,500), font, 1, (255,255,255),2)
+        y0, dy = 500, 30
+        for i, line in enumerate(cmd.split('\n')):
+            y = y0 + i*dy
+            # cv2.putText(img, line, (10, y ), cv2.FONT_HERSHEY_SIMPLEX, 1, 2)
+            cv2.putText(bkg,line,(10,y), font, 0.8, (255,255,255),2)
         cv2.imshow('frame',bkg)
+        out.write(bkg)
 
 
         lastFrame = gray
@@ -233,6 +243,7 @@ def run(videofile, ws):
 
     # When everything done, release the capture
     cap.release()
+    out.release()
 
 run(videofile, ws)
 # static()
