@@ -1,0 +1,145 @@
+[
+  {
+    "mask": [
+      "1. A-F-B Binnenkomen in arbeidsstap op de linkerhand"
+    ],
+    "cmd": ["hoefslagAl"]
+  },
+  {
+    "mask": [
+      "2. Tussen B en M Arbeidsdraf"
+    ],
+    "cmd": ["hoefslagBl"]
+  },
+  {
+    "mask": [
+      "3. C-X-C Grote volte"
+    ],
+    "cmd": ["hoefslagCl","volteAl","hoefslagCl"]
+  },
+  {
+    "mask": [
+      "4. Tussen E en K Arbeidsstap"
+    ],
+    "cmd": ["hoefslagEl"]
+  },
+  {
+    "cmd": ["hoefslagAl"]
+  },
+  {
+    "mask": [
+      "5. Tussen F en B Arbeidsdraf"
+    ],
+    "cmd": ["hoefslagBl"]
+  },
+  {
+    "mask": [
+      "6. C Afwenden",
+      "7. A Rechterhand"
+    ],
+    "cmd": ["hoefslagCl","afwendenCA"]
+  },
+  {
+    "cmd": ["hoefslagAr"]
+  },
+  {
+    "mask": [
+      "8. E-M Van hand veranderen"
+    ],
+    "cmd": ["hoefslagEr","vanhandveranderenEM"]
+  },
+  {
+    "mask": [
+      "9. Tussen C en H Arbeidsstap"
+    ],
+    "cmd": ["hoefslahCl"]
+  },
+  {
+    "mask": [
+      "10. H-K Teugels langer laten worden"
+    ],
+    "cmd": ["hoefslagEl"]
+  },
+  {
+    "mask": [
+      "11. Tussen K en A Teugels op maat maken"
+    ],
+    "cmd": ["hoefslagAl"]
+  },
+  {
+    "mask": [
+      "12. Tussen F en B Arbeidsdraf"
+    ],
+    "cmd": ["hoefslagBl"]
+  },
+  {
+    "mask": [
+      "13. C Afwenden",
+      "14. A Rechterhand"
+    ],
+    "cmd": ["hoefslagCl","afwendenCA"]
+  },
+  {
+    "cmd": ["hoefslagAr"]
+  },
+  {
+    "mask": [
+      "15. K-B Van hand veranderen"
+    ],
+    "cmd": ["vanhandveranderenKB"]
+  },
+  {
+    "cmd": ["hoefslagBl","hoefslagCl"]
+  },
+  {
+    "mask": [
+      "16. H-K Gebroken lijn 5 meter"
+    ],
+    "cmd": ["gebrokenlijnHK5"]
+  },
+  {
+    "cmd": ["hoefslagAl"]
+  },
+  {
+    "mask": [
+      "17. F-E Van hand veranderen"
+    ],
+    "cmd": ["vanhandveranderenFE"]
+  },
+  {
+    "cmd": ["hoefslagEr"]
+  },
+  {
+    "mask": [
+      "18. C-X-C Grote volte"
+    ],
+    "cmd": ["hoefslagCr","volteCr","hoefslagCr"]
+  },
+  {
+    "mask": [
+      "19. B Afwenden"
+      "20. E Linkerhand"
+    ],
+    "cmd": ["hoefslagBr","afwendenBE"]
+  },
+  {
+    "mask": [
+    ],
+    "cmd": ["hoefslagEl"]
+  },
+  {
+    "mask": [
+      "21. A Afwenden"
+      "22. Tussen D en X Arbeidsstap"
+      "23. Tussen X en G Halthouden"
+      "24.  Groeten"
+    ],
+    "cmd": ["hoefslagAl","afwendenAC"]
+  },
+  {
+    "mask": [
+      "25.  Voorwaarts in stap de rijbaan verlaten"
+    ],
+    "cmd": ["hoefslagCl","hoefslagEl"]
+  }
+]
