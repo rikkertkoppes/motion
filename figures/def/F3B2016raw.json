@@ -1,0 +1,382 @@
+[
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "0",
+    "pos": "",
+    "actie": "De gehele proef lichtrijden",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "1",
+    "pos": "A-X-C",
+    "actie": "Binnenkomen in arbeidsdraf , bij C op de linkerhand",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "2",
+    "pos": "E-B-E",
+    "actie": "Grote volte",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "3",
+    "pos": "F-X-H",
+    "actie": "Van hand veranderen",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "4",
+    "pos": "B",
+    "actie": "Afwenden",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "1",
+    "order": "4",
+    "pos": "E",
+    "actie": "Rechterhand",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "5",
+    "pos": "Tussen H en C",
+    "actie": "Arbeidsstap",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "6",
+    "pos": "M-E",
+    "actie": "Van hand veranderen, daarbij",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "7",
+    "pos": "",
+    "actie": "De teugel langer laten worden",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "8",
+    "pos": "Tussen E en K",
+    "actie": "Teugels op maat maken",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "9",
+    "pos": "Tussen A en F",
+    "actie": "Arbeidsdraf",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "10",
+    "pos": "B-E-B",
+    "actie": "Grote volte",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "11",
+    "pos": "Tussen M en C",
+    "actie": "Arbeidsgalop links aanspringen",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "12",
+    "pos": "",
+    "actie": "Rijbaan 1x rond",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "13",
+    "pos": "Tussen M en C",
+    "actie": "Arbeidsdraf",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "14",
+    "pos": "E-F",
+    "actie": "Van hand veranderen",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "15",
+    "pos": "E-B-E",
+    "actie": "Grote volte",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "16",
+    "pos": "Tussen H en C",
+    "actie": "Arbeidsgalop rechts aanspringen",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "17",
+    "pos": "",
+    "actie": "Rijbaan 1x rond",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "18",
+    "pos": "Tussen H en C",
+    "actie": "Arbeidsdraf",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "19",
+    "pos": "M-X-F",
+    "actie": "Gebroken lijn",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "20",
+    "pos": "E",
+    "actie": "Afwenden",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "1",
+    "order": "20",
+    "pos": "B",
+    "actie": "Linkerhand",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "21",
+    "pos": "H-X-K",
+    "actie": "Gebroken lijn",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "22",
+    "pos": "A",
+    "actie": "Afwenden",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "23",
+    "pos": "Tussen D en X",
+    "actie": "Arbeidsstap",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "24",
+    "pos": "Tussen X en G",
+    "actie": "Halthouden en groeten",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "25",
+    "pos": "",
+    "actie": "Voorwaarts in stap de rijbaan verlaten",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "26",
+    "pos": "",
+    "actie": "De houding van de ruiter",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "27",
+    "pos": "",
+    "actie": "De zit van de ruiter",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "28",
+    "pos": "",
+    "actie": "De beenligging van de ruiter",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "29",
+    "pos": "",
+    "actie": "De handhouding van de ruiter",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "30",
+    "pos": "",
+    "actie": "Juistheid der beenhulpen",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "31",
+    "pos": "",
+    "actie": "Juistheid der teugelhulpen",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "32",
+    "pos": "",
+    "actie": "Juistheid van het tempo",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "33",
+    "pos": "",
+    "actie": "Algemene indruk",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "34",
+    "pos": "",
+    "actie": "Verzorging van de ruiter",
+    "descr": "F3B",
+    "key": "3B"
+  },
+  {
+    "F": "3",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "35",
+    "pos": "",
+    "actie": "Verzorging van paard/pony ",
+    "descr": "F3B",
+    "key": "3B"
+  }
+]

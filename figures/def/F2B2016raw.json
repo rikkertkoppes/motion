@@ -1,0 +1,362 @@
+[
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "0",
+    "pos": "",
+    "actie": "De gehele proef lichtrijden",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "1",
+    "pos": "A-F-B",
+    "actie": "Binnenkomen in arbeidsstap op de linkerhand",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "2",
+    "pos": "Tussen B en M",
+    "actie": "Arbeidsdraf",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "3",
+    "pos": "C-X-C",
+    "actie": "Grote volte",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "4",
+    "pos": "Tussen E en K",
+    "actie": "Arbeidsstap",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "5",
+    "pos": "Tussen F en B",
+    "actie": "Arbeidsdraf",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "6",
+    "pos": "C",
+    "actie": "Afwenden",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "7",
+    "pos": "A",
+    "actie": "Rechterhand",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "8",
+    "pos": "E-M",
+    "actie": "Van hand veranderen",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "9",
+    "pos": "Tussen C en H",
+    "actie": "Arbeidsstap",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "10",
+    "pos": "H-K",
+    "actie": "Teugels langer laten worden",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "11",
+    "pos": "Tussen K en A",
+    "actie": "Teugels op maat maken",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "12",
+    "pos": "Tussen F en B",
+    "actie": "Arbeidsdraf",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "13",
+    "pos": "C",
+    "actie": "Afwenden",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "14",
+    "pos": "A",
+    "actie": "Rechterhand",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "15",
+    "pos": "K-B",
+    "actie": "Van hand veranderen",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "16",
+    "pos": "H-K",
+    "actie": "Gebroken lijn 5 meter",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "17",
+    "pos": "F-E",
+    "actie": "Van hand veranderen",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "18",
+    "pos": "C-X-C",
+    "actie": "Grote volte",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "19",
+    "pos": "B",
+    "actie": "Afwenden",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "20",
+    "pos": "E",
+    "actie": "Linkerhand",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "21",
+    "pos": "A",
+    "actie": "Afwenden",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "22",
+    "pos": "Tussen D en X",
+    "actie": "Arbeidsstap",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "23",
+    "pos": "Tussen X en G",
+    "actie": "Halthouden",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "24",
+    "pos": "",
+    "actie": "Groeten",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "25",
+    "pos": "",
+    "actie": "Voorwaarts in stap de rijbaan verlaten",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "26",
+    "pos": "",
+    "actie": "De houding van de ruiter",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "27",
+    "pos": "",
+    "actie": "De zit van de ruiter",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "28",
+    "pos": "",
+    "actie": "De beenligging van de ruiter",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "29",
+    "pos": "",
+    "actie": "De handhouding van de ruiter",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "30",
+    "pos": "",
+    "actie": "Juistheid der beenhulpen",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "31",
+    "pos": "",
+    "actie": "Juistheid der teugelhulpen",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "32",
+    "pos": "",
+    "actie": "Juistheid van het tempo",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "33",
+    "pos": "",
+    "actie": "Algemene indruk",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "34",
+    "pos": "",
+    "actie": "Verzorging van de ruiter",
+    "descr": "F2B",
+    "key": "2B"
+  },
+  {
+    "F": "2",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "35",
+    "pos": "",
+    "actie": "Verzorging van paard/pony ",
+    "descr": "F2B",
+    "key": "2B"
+  }
+]

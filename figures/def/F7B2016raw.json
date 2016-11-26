@@ -1,0 +1,372 @@
+[
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "0",
+    "pos": "",
+    "actie": "Lichtrijden, tenzij doorzitten wordt gevraagd",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "1",
+    "pos": "A-X",
+    "actie": "Binnenkomen in arbeidsdraf",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "2",
+    "pos": "Tussen X en G",
+    "actie": "Halthouden en groeten",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "3",
+    "pos": "",
+    "actie": "Voorwaarts in arbeidsdraf",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "1",
+    "order": "3",
+    "pos": "C",
+    "actie": "Linkerhand",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "4",
+    "pos": "H-X-K",
+    "actie": "Gebroken lijn doorzitten, daarbij",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "5",
+    "pos": "X",
+    "actie": "Volte 10 meter rechts",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "6",
+    "pos": "A",
+    "actie": "Arbeidsstap",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "7",
+    "pos": "F-E",
+    "actie": "Van hand veranderen, daarbij enkele passen middenstap",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "8",
+    "pos": "E-M",
+    "actie": "Van hand veranderen, daarbij de hals laten strekken",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "9",
+    "pos": "M en C",
+    "actie": "Teugels op maat maken",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "10",
+    "pos": "Tussen H en E",
+    "actie": "Arbeidsdraf",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "11",
+    "pos": "A-C",
+    "actie": "Slangenvolte met 4 bogen",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "12",
+    "pos": "M-X-F",
+    "actie": "Gebroken lijn doorzitten, daarbij",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "13",
+    "pos": "X",
+    "actie": "Volte 10 meter links",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "14",
+    "pos": "Tussen A en K",
+    "actie": "Arbeidsgalop rechts aanspringen",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "15",
+    "pos": "E-B-E",
+    "actie": "Grote volte",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "16",
+    "pos": "Tussen H en C",
+    "actie": "Arbeidsdraf",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "17",
+    "pos": "M-X-K",
+    "actie": "Van hand veranderen, daarbij de draf verruimen, daarna arbeidsdraf en doorzitten",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "18",
+    "pos": "Tussen A en F",
+    "actie": "Arbeidsgalop links aanspringen",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "19",
+    "pos": "B-E-B",
+    "actie": "Grote volte",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "20",
+    "pos": "Tussen C en H",
+    "actie": "Arbeidsdraf",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "21",
+    "pos": "E-X-B",
+    "actie": "Door een S van hand veranderen, doorzitten",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "22",
+    "pos": "A",
+    "actie": "Afwenden",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "23",
+    "pos": "X",
+    "actie": "Arbeidsstap",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "24",
+    "pos": "Tussen X en G",
+    "actie": "Halthouden en groeten",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "25",
+    "pos": "",
+    "actie": "Voorwaarts in vrije stap de rijbaan verlaten",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "26",
+    "pos": "",
+    "actie": "De houding van de ruiter",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "27",
+    "pos": "",
+    "actie": "De zit van de ruiter",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "28",
+    "pos": "",
+    "actie": "De beenligging van de ruiter",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "29",
+    "pos": "",
+    "actie": "De handhouding van de ruiter",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "30",
+    "pos": "",
+    "actie": "Juistheid der beenhulpen",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "31",
+    "pos": "",
+    "actie": "Juistheid der teugelhulpen",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "32",
+    "pos": "",
+    "actie": "Juistheid van het tempo",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "33",
+    "pos": "",
+    "actie": "Algemene indruk",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "34",
+    "pos": "",
+    "actie": "Verzorging van de ruiter",
+    "descr": "F7B",
+    "key": "7B"
+  },
+  {
+    "F": "7",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "35",
+    "pos": "",
+    "actie": "Verzorging van paard/pony ",
+    "descr": "F7B",
+    "key": "7B"
+  }
+]

@@ -1,0 +1,392 @@
+[
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "0",
+    "pos": "",
+    "actie": "Lichtrijden, tenzij doorzitten wordt gevraagd",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "1",
+    "pos": "A-X",
+    "actie": "Binnenkomen in arbeidsdraf",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "2",
+    "pos": "Tussen X en G",
+    "actie": "Halthouden en groeten",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "3",
+    "pos": "",
+    "actie": "Voorwaarts in arbeidsdraf,",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "1",
+    "order": "3",
+    "pos": "C",
+    "actie": "Rechterhand",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "4",
+    "pos": "B-X-E",
+    "actie": "Door een S van hand veranderen, doorzitten",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "5",
+    "pos": "F-X-H",
+    "actie": "Van hand veranderen, daarbij de hals laten strekken",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "6",
+    "pos": "Tussen H en C",
+    "actie": "Teugels op maat maken",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "7",
+    "pos": "B-E",
+    "actie": "Halve grote volte, doorzitten,",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "1",
+    "order": "7",
+    "pos": "Voor E",
+    "actie": "Arbeidsgalop rechts aanspringen",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "8",
+    "pos": "C-X-C",
+    "actie": "Grote volte",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "9",
+    "pos": "Tussen B en F",
+    "actie": "Arbeidsdraf",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "10",
+    "pos": "Tussen A en K",
+    "actie": "Arbeidsstap",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "11",
+    "pos": "E-M",
+    "actie": "Van hand veranderen, daarbij enkele passen de stap verruimen",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "12",
+    "pos": "Tussen C en H",
+    "actie": "Arbeidsdraf",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "13",
+    "pos": "E-B",
+    "actie": "Halve grote volte, doorzitten,",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "1",
+    "order": "13",
+    "pos": "Voor B",
+    "actie": "Arbeidsgalop links aanspringen",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "14",
+    "pos": "C-X-C",
+    "actie": "Grote volte",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "15",
+    "pos": "Tussen E en K",
+    "actie": "Arbeidsdraf",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "16",
+    "pos": "F-X-H",
+    "actie": "Van hand veranderen, daarbij",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "17",
+    "pos": "Tussen F en X",
+    "actie": "Arbeidsstap en",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "18",
+    "pos": "Tussen X en H",
+    "actie": "Arbeidsdraf",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "19",
+    "pos": "C-A",
+    "actie": "Slangenvolte met drie bogen",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "20",
+    "pos": "K-X-M",
+    "actie": "Van hand veranderen, daarbij enkele passen draf verruimen",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "21",
+    "pos": "H-X-K",
+    "actie": "Gebroken lijn, doorzitten",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "22",
+    "pos": "A",
+    "actie": "Afwenden",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "23",
+    "pos": "Tussen D en X",
+    "actie": "Arbeidsstap",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "24",
+    "pos": "Tussen X en G",
+    "actie": "Halthouden en groeten",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "25",
+    "pos": "",
+    "actie": "Voorwaarts in vrije stap de rijbaan verlaten",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "26",
+    "pos": "",
+    "actie": "De houding van de ruiter",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "27",
+    "pos": "",
+    "actie": "De zit van de ruiter",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "28",
+    "pos": "",
+    "actie": "De beenligging van de ruiter",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "29",
+    "pos": "",
+    "actie": "De handhouding van de ruiter",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "30",
+    "pos": "",
+    "actie": "Juistheid der beenhulpen",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "31",
+    "pos": "",
+    "actie": "Juistheid der teugelhulpen",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "32",
+    "pos": "",
+    "actie": "Juistheid van het tempo",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "33",
+    "pos": "",
+    "actie": "Algemene indruk",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "34",
+    "pos": "",
+    "actie": "Verzorging van de ruiter",
+    "descr": "F6B",
+    "key": "6B"
+  },
+  {
+    "F": "6",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "35",
+    "pos": "",
+    "actie": "Verzorging van paard/pony ",
+    "descr": "F6B",
+    "key": "6B"
+  }
+]

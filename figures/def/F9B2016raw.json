@@ -1,0 +1,382 @@
+[
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "0",
+    "pos": "",
+    "actie": "Lichtrijden, tenzij doorzitten wordt gevraagd",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "1",
+    "pos": "A-X",
+    "actie": "Binnenkomen in arbeidsdraf",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "2",
+    "pos": "X",
+    "actie": "Halthouden en groeten",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "3",
+    "pos": "",
+    "actie": "Voorwaarts in arbeidsdraf",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "1",
+    "order": "3",
+    "pos": "C",
+    "actie": "Linkerhand",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "4",
+    "pos": "E-X-B",
+    "actie": "Door een S van hand veranderen, doorzitten",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "5",
+    "pos": "A",
+    "actie": "Volte 15 meter, doorzitten",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "6",
+    "pos": "K-X-M",
+    "actie": "Van hand veranderen, daarbij enkele passen middendraf",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "7",
+    "pos": "C",
+    "actie": "Volte 15 meter, doorzitten",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "8",
+    "pos": "E-X-H",
+    "actie": "Linksomkeert, doorzitten, daarna blijven doorzitten",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "9",
+    "pos": "C",
+    "actie": "Arbeidsgalop rechts aanspringen",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "10",
+    "pos": "B-E-B",
+    "actie": "Grote volte",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "11",
+    "pos": "A",
+    "actie": "Arbeidsdraf",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "12",
+    "pos": "E-X-K",
+    "actie": "Rechtsomkeert, doorzitten, daarna blijven doorzitten",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "13",
+    "pos": "A",
+    "actie": "Arbeidsgalop links aanspringen",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "14",
+    "pos": "C-X-C",
+    "actie": "Grote volte",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "15",
+    "pos": "H",
+    "actie": "Arbeidsdraf, doorzitten",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "16",
+    "pos": "Voor B",
+    "actie": "Arbeidsstap",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "1",
+    "order": "16",
+    "pos": "B",
+    "actie": "Halthouden, vier seconden stilstaan",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "17",
+    "pos": "",
+    "actie": "Voorwaarts in arbeidsdraf",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "18",
+    "pos": "C",
+    "actie": "Slangenvolte met 3 bogen, daarbij",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "19",
+    "pos": "Op de lijn A-C",
+    "actie": "Arbeidsstap (tweede boog in arbeidsstap)",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "20",
+    "pos": "Op de lijn A-C",
+    "actie": "Arbeidsdraf",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "21",
+    "pos": "A-X",
+    "actie": "Halve grote volte links, gevolgd door",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "22",
+    "pos": "X-C",
+    "actie": "Halve grote volte rechts",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "23",
+    "pos": "A",
+    "actie": "Afwenden, doorzitten",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "24",
+    "pos": "G",
+    "actie": "Halthouden en groeten",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "25",
+    "pos": "",
+    "actie": "Voorwaarts in vrije stap de rijbaan verlaten",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "26",
+    "pos": "",
+    "actie": "De houding van de ruiter",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "27",
+    "pos": "",
+    "actie": "De zit van de ruiter",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "28",
+    "pos": "",
+    "actie": "De beenligging van de ruiter",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "29",
+    "pos": "",
+    "actie": "De handhouding van de ruiter",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "30",
+    "pos": "",
+    "actie": "Juistheid der beenhulpen",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "31",
+    "pos": "",
+    "actie": "Juistheid der teugelhulpen",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "32",
+    "pos": "",
+    "actie": "Juistheid van het tempo",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "33",
+    "pos": "",
+    "actie": "Algemene indruk",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "34",
+    "pos": "",
+    "actie": "Constante verbinding",
+    "descr": "F9B",
+    "key": "9B"
+  },
+  {
+    "F": "9",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "35",
+    "pos": "",
+    "actie": "Verzorging van ruiter en paard ",
+    "descr": "F9B",
+    "key": "9B"
+  }
+]

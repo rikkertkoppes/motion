@@ -1,0 +1,382 @@
+[
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "0",
+    "pos": "",
+    "actie": "De gehele proef lichtrijden",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "1",
+    "pos": "A-X-C",
+    "actie": "Binnenkomen in arbeidsdraf, bij C op de linkerhand",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "2",
+    "pos": "H-X-F",
+    "actie": "Van hand veranderen",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "3",
+    "pos": "K-X-H",
+    "actie": "Gebroken lijn",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "4",
+    "pos": "B-E-B",
+    "actie": "Grote volte",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "5",
+    "pos": "Tussen F en A",
+    "actie": "Arbeidsstap",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "6",
+    "pos": "K-X-M",
+    "actie": "Van hand veranderen, daarbij ",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "1",
+    "order": "6",
+    "pos": "Tussen K en X",
+    "actie": "de teugel langer laten worden",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "7",
+    "pos": "Tussen X en M",
+    "actie": "Teugels op maat maken",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "8",
+    "pos": "Tussen M en C",
+    "actie": "Arbeidsdraf",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "9",
+    "pos": "H-X-K",
+    "actie": "Gebroken lijn",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "10",
+    "pos": "A",
+    "actie": "Afwenden",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "1",
+    "order": "10",
+    "pos": "C",
+    "actie": "Linkerhand",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "11",
+    "pos": "E-B-E",
+    "actie": "Grote volte",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "12",
+    "pos": "F-X-H",
+    "actie": "Van hand veranderen",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "13",
+    "pos": "Tussen H en C",
+    "actie": "Arbeidsgalop rechts aanspringen",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "14",
+    "pos": "A-X-A",
+    "actie": "Grote volte",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "15",
+    "pos": "Tussen H en C",
+    "actie": "Arbeidsdraf",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "16",
+    "pos": "M-E",
+    "actie": "Van hand veranderen",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "17",
+    "pos": "Tussen K en A",
+    "actie": "Arbeidsgalop links aanspringen",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "18",
+    "pos": "C-X-C",
+    "actie": "Grote volte",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "19",
+    "pos": "Tussen K en A",
+    "actie": "Arbeidsdraf",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "20",
+    "pos": "B",
+    "actie": "Afwenden",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "21",
+    "pos": "E",
+    "actie": "Linkerhand",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "22",
+    "pos": "A",
+    "actie": "Afwenden",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "23",
+    "pos": "Tussen D en X",
+    "actie": "Arbeidsstap",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "24",
+    "pos": "Tussen X en G",
+    "actie": "Halthouden en groeten",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "25",
+    "pos": "",
+    "actie": "Voorwaarts in vrije stap de rijbaan verlaten",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "26",
+    "pos": "",
+    "actie": "De houding van de ruiter",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "27",
+    "pos": "",
+    "actie": "De zit van de ruiter",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "28",
+    "pos": "",
+    "actie": "De beenligging van de ruiter",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "29",
+    "pos": "",
+    "actie": "De handhouding van de ruiter",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "30",
+    "pos": "",
+    "actie": "Juistheid der beenhulpen",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "31",
+    "pos": "",
+    "actie": "Juistheid der teugelhulpen",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "32",
+    "pos": "",
+    "actie": "Juistheid van het tempo",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "33",
+    "pos": "",
+    "actie": "Algemene indruk",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "34",
+    "pos": "",
+    "actie": "Verzorging van de ruiter",
+    "descr": "F4B",
+    "key": "4B"
+  },
+  {
+    "F": "4",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "35",
+    "pos": "",
+    "actie": "Verzorging van paard/pony ",
+    "descr": "F4B",
+    "key": "4B"
+  }
+]

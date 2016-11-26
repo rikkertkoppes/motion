@@ -1,0 +1,362 @@
+[
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "0",
+    "pos": "",
+    "actie": "De gehele proef lichtrijden",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "1",
+    "pos": "A-K-E",
+    "actie": "Binnenkomen in arbeidsstap op de rechterhand",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "2",
+    "pos": "Tussen E en H",
+    "actie": "Arbeidsdraf",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "3",
+    "pos": "M-F",
+    "actie": "Gebroken lijn 5 meter",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "4",
+    "pos": "E",
+    "actie": "Afwenden",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "5",
+    "pos": "B",
+    "actie": "Linkerhand",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "6",
+    "pos": "H-K",
+    "actie": "Gebroken lijn 5 meter",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "7",
+    "pos": "A",
+    "actie": "Afwenden en arbeidsstap",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "8",
+    "pos": "C",
+    "actie": "Linkerhand en arbeidsdraf",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "9",
+    "pos": "E",
+    "actie": "Afwenden",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "10",
+    "pos": "B",
+    "actie": "Linkerhand",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "11",
+    "pos": "H-X-F",
+    "actie": "Van hand veranderen",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "12",
+    "pos": "Tussen F en A",
+    "actie": "Arbeidsstap",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "13",
+    "pos": "A-E",
+    "actie": "Wenden",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "14",
+    "pos": "E-C",
+    "actie": "Wenden",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "15",
+    "pos": "Tussen M en B",
+    "actie": "Arbeidsdraf",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "16",
+    "pos": "A-X-A",
+    "actie": "Grote volte",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "17",
+    "pos": "E-M",
+    "actie": "Van hand veranderen",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "18",
+    "pos": "H-X-F",
+    "actie": "Van hand veranderen",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "19",
+    "pos": "E",
+    "actie": "Afwenden",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "20",
+    "pos": "B",
+    "actie": "Rechterhand",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "21",
+    "pos": "A",
+    "actie": "Afwenden",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "22",
+    "pos": "Tussen D en X",
+    "actie": "Arbeidsstap",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "23",
+    "pos": "Tussen X en G",
+    "actie": "Halthouden",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "24",
+    "pos": "",
+    "actie": "Groeten",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "25",
+    "pos": "",
+    "actie": "Voorwaarts in stap de rijbaan verlaten",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "26",
+    "pos": "",
+    "actie": "De houding van de ruiter",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "27",
+    "pos": "",
+    "actie": "De zit van de ruiter",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "28",
+    "pos": "",
+    "actie": "De beenligging van de ruiter",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "29",
+    "pos": "",
+    "actie": "De handhouding van de ruiter",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "30",
+    "pos": "",
+    "actie": "Juistheid der beenhulpen",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "31",
+    "pos": "",
+    "actie": "Juistheid der teugelhulpen",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "32",
+    "pos": "",
+    "actie": "Juistheid van het tempo",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "33",
+    "pos": "",
+    "actie": "Algemene indruk",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "34",
+    "pos": "",
+    "actie": "Verzorging van de ruiter",
+    "descr": "F1B",
+    "key": "1B"
+  },
+  {
+    "F": "1",
+    "Versie": "B",
+    "suborder": "0",
+    "order": "35",
+    "pos": "",
+    "actie": "Verzorging van paard/pony ",
+    "descr": "F1B",
+    "key": "1B"
+  }
+]
