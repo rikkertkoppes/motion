@@ -35,7 +35,7 @@ def on_message(ws, message):
     if (data['topic'] == 'figure'):
         if (data['data'] != ''):
             print data['data']
-            cmd = data['data']
+            cmd = data['data']['cmd']
 
 def on_error(ws, error):
     print error

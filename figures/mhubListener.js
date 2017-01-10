@@ -226,8 +226,8 @@ function aggregateTo(recognizer) {
             // if (recognizer.name == maskName(seq, currentMask)) {
                 var cmd = [].concat(getAction(seq, currentMask).cmd||[]).join('\n');
                 // console.log('found expected',recognizer.name, recognizer.aggregate, timestep, currentMask);
-                console.log(cmd);
-                client.publish("default", "figure", cmd);
+                console.log(currentMask, cmd);
+                client.publish("default", "figure", {cmd: cmd, mask:currentMask});
                 //recognition, inhibit other recognizers
                 inhibitOthers(seq, recognizers, currentMask);
                 //expect the next
