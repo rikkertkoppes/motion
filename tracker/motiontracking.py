@@ -27,15 +27,32 @@ ws = websocket.WebSocket()
 ws.connect("ws://localhost:13900")
 
 cmd = ''
+fileName = 'first.avi'
+fourcc = cv2.cv.CV_FOURCC('M','J','P','G')
+# fourcc = cv2.cv.CV_FOURCC('X','V','I','D')
+# fourcc = cv2.cv.CV_FOURCC('D','I','V','X')
+out = cv2.VideoWriter(fileName, fourcc, 30.0, (640,480))
 
 def on_message(ws, message):
-    global cmd
+    global cmd, out
     data = json.loads(message)
     # print data['topic']
     if (data['topic'] == 'figure'):
         if (data['data'] != ''):
             print data['data']
+<<<<<<< Updated upstream
             cmd = data['data']['cmd']
+=======
+            cmd = data['data']
+    if (data['topic'] == 'start'):
+        if (data['data'] != ''):
+            f = 'F' + str(data['data']['meta']['test'])
+            n = data['data']['member']['firstName']
+            fileName = f+'_'+n+'.avi'
+            out.release()
+            out = cv2.VideoWriter(fileName, fourcc, 30.0, (640,480))
+            print 'starting ' + fileName
+>>>>>>> Stashed changes
 
 def on_error(ws, error):
     print error
@@ -59,8 +76,8 @@ def run(*args):
 thread.start_new_thread(run, ())
 
 
-videofile = sys.argv[1]
-datafile = sys.argv[2]
+# videofile = sys.argv[1]
+# datafile = sys.argv[2]
 
 #manually setting ring boundaries
 scale = 1
@@ -155,11 +172,11 @@ def drawBounds(dst, rect, scale, size):
 
 
 def run(videofile, ws):
-    global scale, offset, cmd
-    # cap = cv2.VideoCapture(0)
-    cap = cv2.VideoCapture(videofile)
-    fourcc = cv2.cv.CV_FOURCC('M','J','P','G')
-    out = cv2.VideoWriter('output.avi', fourcc, 30.0, (800,600))
+    global scale, offset, cmd, out
+    cap = cv2.VideoCapture(0)
+    # cap = cv2.VideoCapture(videofile)
+    # fourcc = cv2.cv.CV_FOURCC('M','J','P','G')
+    # out = cv2.VideoWriter('output.avi', fourcc, 30.0, (800,600))
     lastFrame = None
     cv2.namedWindow("frame", 1)
     cv2.setMouseCallback("frame", onmouse)
@@ -167,7 +184,7 @@ def run(videofile, ws):
     while(True):
         # Capture frame-by-frame
         ret, img = cap.read()
-
+        out.write(img)
         if ret == False:
             break
 
@@ -225,7 +242,7 @@ def run(videofile, ws):
             # cv2.putText(img, line, (10, y ), cv2.FONT_HERSHEY_SIMPLEX, 1, 2)
             cv2.putText(bkg,line,(10,y), font, 0.8, (255,255,255),2)
         cv2.imshow('frame',bkg)
-        out.write(bkg)
+        # out.write(bkg)
 
 
         lastFrame = gray
@@ -245,11 +262,11 @@ def run(videofile, ws):
     cap.release()
     out.release()
 
-run(videofile, ws)
+run('videofile', ws)
 # static()
 cv2.destroyAllWindows()
 
-f = open(datafile,'w')
-f.write(json.dumps(data))
+# f = open(datafile,'w')
+# f.write(json.dumps(data))
 
-print 'data written to file '+datafile
+# print 'data written to file '+datafile
