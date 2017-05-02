@@ -1,5 +1,10 @@
 # figures
 
+## installation
+
+- sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
+- npm install
+
 goal: create graphical black/white SDR representations of all figures
 
 - image dimensions must be specified (start 200 x 400)
