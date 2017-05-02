@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="bower_components/mathbox/build/mathbox.css">
+    <script src="bower_components/mathbox/build/mathbox-bundle.js"></script>
+    <!-- Load c3.css -->
+    <link href="bower_components/c3/c3.css" rel="stylesheet" type="text/css">
+
+    <!-- Load d3.js and c3.js -->
+    <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <script src="bower_components/c3/c3.min.js"></script>
+    <script src="bower_components/canvasjs/canvasjs.min.js"></script>
+    <style>
+        #graph {
+            /*width: 400px;
+            height: 300px;*/
+        }
+    </style>
+</head>
+<body>
+    <div id="graph"></div>
+    <script>
+
+// var chart = c3.generate({
+//     bindto: '#graph',
+//     data: {
+//       columns: [
+//         ['data1', 30, 200, 100, 400, 150, 250],
+//         ['data2', 50, 20, 10, 40, 15, 25]
+//       ]
+//     }
+// });
+
+var dps = []; // dataPoints
+
+var chart = new CanvasJS.Chart("graph",{
+    title :{
+        text: "Live Tracking Data"
+    },
+    data: [{
+        type: "line",
+        dataPoints: dps
+    }]
+});
+
+var xVal = 0;
+var yVal = 100;
+// var updateInterval = 100;
+var dataLength = 500; // number of dataPoints visible at any point
+
+chart.render();
+
+// var updateChart = function (count) {
+//     count = count || 1;
+//     // count is number of times loop runs to generate random dataPoints.
+
+//     for (var j = 0; j < count; j++) {
+//         yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
+//         dps.push({
+//             x: xVal,
+//             y: yVal
+//         });
+//         xVal++;
+//     };
+//     if (dps.length > dataLength)
+//     {
+//         dps.shift();
+//     }
+
+//     chart.render();
+
+// };
+
+// generates first set of dataPoints
+// updateChart(dataLength);
+
+// update chart after specified time.
+// setInterval(function(){updateChart()}, updateInterval);
+
+//         var element = document.querySelector('#graph');
+//         var mathbox = mathBox({
+//             xelement: element,
+//             antialias: true,
+//             plugins: ['core', 'controls', 'cursor', 'mathbox'],
+//             controls: {
+//                 // Orbit controls, i.e. Euler angles, with gimbal lock
+//                 klass: THREE.OrbitControls,
+
+//                 // Trackball controls, i.e. Free quaternion rotation
+//                 //klass: THREE.TrackballControls,
+//             }
+//         });
+//         if (mathbox.fallback) throw "WebGL not supported";
+
+//         var three = mathbox.three;
+//         three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
+
+// var mainData = [];
+
+ws = new WebSocket('ws://localhost.daplie.me:13900');
+
+//subscribe to receive messages
+ws.onopen = function() {
+    ws.send(JSON.stringify({
+        type: 'subscribe',
+        node: 'default'
+    }));
+};
+
+//handle messages received
+ws.onmessage = function(frame) {
+    var msg = JSON.parse(frame.data);
+    if (msg.topic === 'data') {
+        // console.log(msg.data);
+        // mainData.push(msg.data);
+        dps.push({
+            x: xVal,
+            y: msg.data[14].value
+        });
+        xVal += 1;
+        if (dps.length > dataLength) {
+            dps.shift();
+        }
+        chart.render();
+        // chart.flow({
+        //     columns: [
+        //         ['data1', msg.data[14].value],
+        //         ['data2', msg.data[15].value]
+        //     ]
+        // })
+        // console.log(mainData.length, msg.data[14].value);
+    }
+};
+
+
+// var camera = mathbox.camera({
+//   proxy: true,
+//   position: [0, 0, 3],
+// });
+
+// var view = mathbox.cartesian({
+//   // range: [[-2,2], [-1,1]],
+//   range: [[-10, 1000], [-10, 100]],
+//   scale: [2, 1],
+// });
+
+// view
+//   .axis({
+//     axis: 1,
+//     width: 3,
+//   })
+//   .axis({
+//     axis: 2,
+//     width: 3,
+//   })
+//   .grid({
+//     width: 2,
+//     divideX: 20,
+//     divideY: 10,
+//   });
+
+// var data =
+//   view.interval({
+//     expr: function (emit, x, i, t) {
+//         emit(x, ((mainData[Math.floor(x)]||[])[14]||{}).value + 10);
+//         emit(x, ((mainData[Math.floor(x)]||[])[15]||{}).value + 10);
+//       // emit(x, ((mainData[0]||[])[x]||{}).value + 10);
+//       // emit(x, Math.sin(x + t), Math.cos(x + t));
+//       // emit(x, Math.cos(x + t));
+//     },
+//     width: 64,
+//     channels: 2,
+//     items: 2
+//   });
+
+// var curve =
+//   view.line({
+//     width: 5,
+//     color: '#3090FF',
+//   });
+// // var curve2 =
+// //   view.line({
+// //     width: 5,
+// //     color: 'red',
+// //   });
+
+// var scale =
+//       view.scale({
+//         divide: 10,
+//       });
+
+//     var ticks =
+//       view.ticks({
+//         width: 5,
+//         size: 15,
+//         color: 'black',
+//       });
+
+//     var format =
+//       view.format({
+//         digits: 2,
+//         weight: 'bold',
+//       });
+
+//     var labels =
+//       view.label({
+//         color: 'red',
+//         zIndex: 1,
+//       });
+
+
+    </script>
+</body>
+</html>

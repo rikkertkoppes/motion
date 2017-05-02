@@ -71,6 +71,12 @@ function handleMessage(masks) {
             var wsdr = makeSDR(wheading);
             // calculate overlap with stored masks
             var overlaps = masks.map(overlapMask(wfilteredScaled, wsdr));
+            client.publish("default", "data", overlaps);
+
+            console.log(overlaps.sort(helpers.by(o => o.value, true)).slice(0,5));
+
+
+            // console.log(masks);
             // feed each overlap point through the recognizer
             overlaps.forEach(function(overlap) {
                 var recognizer = recognizers[overlap.path.match(/(\w*)\.png/)[1]];

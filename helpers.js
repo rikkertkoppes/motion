@@ -17,6 +17,16 @@ function process(points, filter) {
     }, []);
 }
 
+//sort array by given extractor
+function by(extractor, reverse) {
+    return function(a,b) {
+        var va = extractor(a);
+        var vb = extractor(b);
+        if (va === vb) return 0;
+        return ((va < vb) !== reverse)? -1: 1;
+    }
+}
+
 //filters (reducers)
 function indentity() {
     return function(data, datum) {
@@ -91,6 +101,7 @@ if (typeof exports === 'object') {
         add: add,
         dot: dot,
         distance2: distance2,
-        byDistanceTo: byDistanceTo
+        byDistanceTo: byDistanceTo,
+        by
     }
 }
