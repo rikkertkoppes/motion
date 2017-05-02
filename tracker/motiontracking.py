@@ -20,6 +20,7 @@ import itertools
 import websocket
 import json
 import thread
+from imutils.video import VideoStream
 
 # ws = None
 ws = websocket.WebSocket()
@@ -27,19 +28,23 @@ ws = websocket.WebSocket()
 ws.connect("ws://localhost:13900")
 
 cmd = ''
+pathImg = None
 fileName = 'first.avi'
 fourcc = cv2.cv.CV_FOURCC('M','J','P','G')
 # fourcc = cv2.cv.CV_FOURCC('X','V','I','D')
 # fourcc = cv2.cv.CV_FOURCC('D','I','V','X')
 out = cv2.VideoWriter(fileName, fourcc, 30.0, (640,480))
+# fgbg = cv2.createBackgroundSubtractorMOG2()
 
 def on_message(ws, message):
-    global cmd, out
+    global cmd, pathImg, out
     data = json.loads(message)
     # print data['topic']
     if (data['topic'] == 'figure'):
         if (data['data'] != ''):
             print data['data']
+            fileName = '../figures/paths/'+data['data']['path']+'.png'
+            pathImg = cv2.imread(fileName)
             line = data['data']['cmd']
             if line != '':
                 cmd = line
@@ -192,11 +197,9 @@ def getDeltaContours(lastFrame, img, gray):
     contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     rects = findRects(contours)
     bottoms = [bottom(r) for r in rects]
-    if len(contours) > 0:
-        img = drawRects(img, rects)
 
     # cv2.imshow('frameDelta',frameDelta)
-    return thresh, bottoms
+    return thresh, rects, bottoms
 
 
 def drawText(img, cmd):
@@ -206,6 +209,13 @@ def drawText(img, cmd):
         y = y0 + i*dy
         # cv2.putText(img, line, (10, y ), cv2.FONT_HERSHEY_SIMPLEX, 1, 2)
         cv2.putText(img,line,(10,y), font, 0.8, (255,255,255),1, cv2.CV_AA)
+
+    return img
+
+
+def drawPath(img, pathImg):
+    if pathImg is not None:
+        img[0:pathImg.shape[0], 0:pathImg.shape[1]] = pathImg
 
     return img
 
@@ -222,26 +232,37 @@ def scalePadVideo(img, scale):
 
 
 def scaleVideo(img, scale):
-    h,w = img.shape
+    h,w = img.shape[0], img.shape[1]
     return cv2.resize(img, (int(scale * w), int(scale * h)))
 
 
+def safeShowVideo(name, img, scale=1):
+    if img is not None:
+        cv2.imshow(name, scaleVideo(img, scale))
+
 def run(videofile, ws):
-    global scale, offset, cmd, out
+    global scale, offset, cmd, out, pathImg
     # cap = cv2.VideoCapture(0)
+    # cap = VideoStream(0).start()
     cap = cv2.VideoCapture(videofile)
-    # fourcc = cv2.cv.CV_FOURCC('M','J','P','G')
-    # out = cv2.VideoWriter('output.avi', fourcc, 30.0, (800,600))
+    fourcc = cv2.cv.CV_FOURCC('M','J','P','G')
+    out = cv2.VideoWriter('output.avi', fourcc, 15.0, (800,600))
     lastFrame = None
+    trans = None
+    thresh = None
+    rects = []
     cv2.namedWindow("frame", 1)
     cv2.setMouseCallback("frame", onmouse)
     ws.send('{"type":"publish","node":"default","topic":"reset"}')
+    fgbg = cv2.BackgroundSubtractorMOG()
     while(True):
         # Capture frame-by-frame
+        # img = cap.read()
         ret, img = cap.read()
-        out.write(img)
         if ret == False:
             break
+
+        fgmask = fgbg.apply(img)
 
         # create jpg frame for restreaming
         ret, jpeg = cv2.imencode('.jpg', img)
@@ -252,26 +273,28 @@ def run(videofile, ws):
         gray = cv2.GaussianBlur(gray, (11, 11), 0)
 
         if lastFrame is not None:
-            thresh, bottoms = getDeltaContours(lastFrame, img, gray)
+            thresh, rects, bottoms = getDeltaContours(lastFrame, img, gray)
 
             if M is not None:
                 if len(bottoms) > 0:
                     onresult(ws, bottoms, M)
                     data['points'].append(bottoms)
                 trans = cv2.warpPerspective(img,M,(400,200))
-                cv2.imshow('trans',trans)
 
-            cv2.imshow('delta',scaleVideo(thresh,0.5))
-
-
-        # cv2.imshow('delta',fgmask)
-
-        bkg = scalePadVideo(img, scale)
-        bkg = drawBounds(bkg, rect, scale)
+        bkg = img.copy()
+        bkg = drawRects(bkg, rects)
+        bkg = scalePadVideo(bkg, scale)
+        # bkg = drawBounds(bkg, rect, scale)
         bkg = drawText(bkg, cmd)
+        bkg = drawPath(bkg, pathImg)
 
-        cv2.imshow('frame',bkg)
-        # out.write(bkg)
+        safeShowVideo('frame',bkg)
+        safeShowVideo('delta',thresh,0.5)
+        safeShowVideo('delta2',fgmask, 0.5)
+        safeShowVideo('original',img, 0.5)
+        safeShowVideo('transformed',trans)
+        # out.write(img)
+        out.write(bkg)
 
 
         lastFrame = gray
@@ -288,7 +311,7 @@ def run(videofile, ws):
 
 
     # When everything done, release the capture
-    cap.release()
+    cap.stop()
     out.release()
 
 run(videofile, ws)
