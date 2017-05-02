@@ -40,7 +40,7 @@
             video.src = window.URL.createObjectURL(localMediaStream);
         }, errorCallback);
 
-        ws = new WebSocket('wss://192.168.0.107:13901');
+        ws = new WebSocket('wss://localhost.daplie.me:13901');
 
         //subscribe to receive messages
         ws.onopen = function() {
