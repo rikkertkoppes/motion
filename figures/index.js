@@ -6,7 +6,9 @@ var fs = require('fs');
 var path = require('path');
 
 var w = 100;
-var s = 4;
+// var s = 4;
+var strokeWidth = 1;
+var strokeColor = 'white';
 
 
 //TODO: use http://paperjs.org/tutorials/interaction/working-with-mouse-vectors/
@@ -69,8 +71,8 @@ paper.setup(canvas);
 paper.view.center = new paper.Point(0, 0);
 paper.view.zoom = w/40;
 var defaultStyle = {
-    strokeColor: 'white',
-    strokeWidth: s,
+    strokeColor,
+    strokeWidth,
     strokeCap: 'round'
 }
 
@@ -79,9 +81,9 @@ Object.keys(paths).reduce(function(pending, name) {
     return pending.then(function() {
         clear();
         var line = createPath.apply(null,paths[name]).set(defaultStyle);
-        var stroke = createStroke(line, 4);
+        var stroke = createStroke(line, strokeWidth, strokeColor);
         paper.view.update();
-        return renderImage(path.resolve('masks',name+'.png'), canvas);
+        return renderImage(path.resolve('paths',name+'.png'), canvas);
     })
 }, Promise.resolve()).then(function() {
     console.log('done')
@@ -127,23 +129,23 @@ function makeBinary(canvas) {
 }
 
 
-function createStroke(path, strokeWidth) {
+function createStroke(path, strokeWidth, color) {
     //not at 0 and length, because the tangent is not calculated correctly at that point
-    createRectAt(path, 0.0001, strokeWidth);
+    createRectAt(path, 0.0001, strokeWidth, color);
     for (var i=1; i< path.length; i++) {
-        createRectAt(path, i, strokeWidth);
+        createRectAt(path, i, strokeWidth, color);
     }
-    createRectAt(path, path.length-0.0001, strokeWidth);
+    createRectAt(path, path.length-0.0001, strokeWidth, color);
     path.remove();
     return path.set({
         strokeWidth: strokeWidth
     });
 }
 
-function createRectAt(path, offset, strokeWidth) {
+function createRectAt(path, offset, strokeWidth, color) {
     var hw = strokeWidth;// / 2;
     var heading = path.getTangentAt(offset).angle;
-    var color = {hue: heading, saturation: 1, brightness: 1};
+    var color = color || {hue: heading, saturation: 1, brightness: 1};
     paper.Path.Rectangle([-1.5,-hw],[1.5,hw]).set({
         position: path.getPointAt(offset),
         rotation: heading,
