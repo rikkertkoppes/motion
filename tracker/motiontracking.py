@@ -40,10 +40,10 @@ def on_message(ws, message):
     if (data['topic'] == 'figure'):
         if (data['data'] != ''):
             print data['data']
-<<<<<<< Updated upstream
-            cmd = data['data']['cmd']
-=======
-            cmd = data['data']
+            line = data['data']['cmd']
+            if line != '':
+                cmd = line
+            # cmd = data['data']
     if (data['topic'] == 'start'):
         if (data['data'] != ''):
             f = 'F' + str(data['data']['meta']['test'])
@@ -52,7 +52,6 @@ def on_message(ws, message):
             out.release()
             out = cv2.VideoWriter(fileName, fourcc, 30.0, (640,480))
             print 'starting ' + fileName
->>>>>>> Stashed changes
 
 def on_error(ws, error):
     print error
@@ -76,8 +75,8 @@ def run(*args):
 thread.start_new_thread(run, ())
 
 
-# videofile = sys.argv[1]
-# datafile = sys.argv[2]
+videofile = sys.argv[1]
+datafile = sys.argv[2]
 
 #manually setting ring boundaries
 scale = 1
@@ -166,15 +165,71 @@ def projectPoint(point, scale, size):
     return [x+int(round(point[0]*scale)), y+int(round(point[1]*scale))]
 
 
-def drawBounds(dst, rect, scale, size):
-    rect = map(lambda c: projectPoint(c, scale, size),rect)
-    cv2.polylines(dst, np.array([rect]), True, (0,255,0), 2)
+def drawBounds(dst, rect, scale):
+    h,w,_ = dst.shape
+    if len(rect) > 1:
+        rect = map(lambda c: projectPoint(c, scale, (w, h)),rect)
+        cv2.polylines(dst, np.array([rect]), True, (0,255,0), 2)
+
+    return dst
+
+
+
+def drawRects(img, rects):
+    for r in rects:
+        (p1, p2) = r
+        p3 = bottom((p1,p2))
+        cv2.rectangle(img, p1, p2, (0,255,0), 2)
+        cv2.circle(img, p3, 4, (255,0,0), -1)
+
+    return img
+
+
+def getDeltaContours(lastFrame, img, gray):
+    frameDelta = cv2.absdiff(lastFrame, gray)
+    thresh = cv2.threshold(frameDelta, 10, 255, cv2.THRESH_BINARY)[1]
+    thresh = cv2.dilate(thresh, None, iterations=8)
+    contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    rects = findRects(contours)
+    bottoms = [bottom(r) for r in rects]
+    if len(contours) > 0:
+        img = drawRects(img, rects)
+
+    # cv2.imshow('frameDelta',frameDelta)
+    return thresh, bottoms
+
+
+def drawText(img, cmd):
+    font = cv2.FONT_HERSHEY_DUPLEX
+    y0, dy = 500, 30
+    for i, line in enumerate(cmd.split('\n')):
+        y = y0 + i*dy
+        # cv2.putText(img, line, (10, y ), cv2.FONT_HERSHEY_SIMPLEX, 1, 2)
+        cv2.putText(img,line,(10,y), font, 0.8, (255,255,255),1, cv2.CV_AA)
+
+    return img
+
+
+def scalePadVideo(img, scale):
+    h,w,_ = img.shape
+    bkg = np.zeros((h,w,3), np.uint8)
+    scaled = cv2.resize(img, (0,0), bkg, scale, scale)
+    x = int(round(w * (1-scale)/2))
+    y = int(round(h * (1-scale)/2))
+    offset = [x,y]
+    bkg[y:y + scaled.shape[0], x:x + scaled.shape[1]] = scaled
+    return bkg
+
+
+def scaleVideo(img, scale):
+    h,w = img.shape
+    return cv2.resize(img, (int(scale * w), int(scale * h)))
 
 
 def run(videofile, ws):
     global scale, offset, cmd, out
-    cap = cv2.VideoCapture(0)
-    # cap = cv2.VideoCapture(videofile)
+    # cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(videofile)
     # fourcc = cv2.cv.CV_FOURCC('M','J','P','G')
     # out = cv2.VideoWriter('output.avi', fourcc, 30.0, (800,600))
     lastFrame = None
@@ -195,52 +250,26 @@ def run(videofile, ws):
         # frame = imutils.resize(img, width=500)
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         gray = cv2.GaussianBlur(gray, (11, 11), 0)
-        p3 = None
-        
-        #black background for scaling
-        h,w,_ = img.shape
-        bkg = np.zeros((h,w,3), np.uint8)
 
         if lastFrame is not None:
-            frameDelta = cv2.absdiff(lastFrame, gray)
-            thresh = cv2.threshold(frameDelta, 10, 255, cv2.THRESH_BINARY)[1]
-            thresh = cv2.dilate(thresh, None, iterations=8)
-            contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-            if len(contours) > 0:
-                rects = findRects(contours)
-                bottoms = [bottom(r) for r in rects]
-                for r in rects:
-                    (p1, p2) = r
-                    p3 = bottom((p1,p2))
-                    cv2.rectangle(img, p1, p2, (0,255,0), 2)
-                    cv2.circle(img, p3, 4, (255,0,0), -1)
-                if M is not None:
-                    onresult(ws, bottoms, M)
-                    # data['points'].append(points)
-                    data['points'].append(bottoms)
+            thresh, bottoms = getDeltaContours(lastFrame, img, gray)
 
             if M is not None:
+                if len(bottoms) > 0:
+                    onresult(ws, bottoms, M)
+                    data['points'].append(bottoms)
                 trans = cv2.warpPerspective(img,M,(400,200))
                 cv2.imshow('trans',trans)
 
+            cv2.imshow('delta',scaleVideo(thresh,0.5))
 
-            # cv2.imshow('frameDelta',frameDelta)
-            cv2.imshow('delta',thresh)
 
-        scaled = cv2.resize(img, (0,0), bkg, scale, scale) 
-        x = int(round(w * (1-scale)/2))
-        y = int(round(h * (1-scale)/2))
-        offset = [x,y]
-        bkg[y:y + scaled.shape[0], x:x + scaled.shape[1]] = scaled
-        if len(rect) > 1:
-            drawBounds(bkg, rect, scale, (w,h))
+        # cv2.imshow('delta',fgmask)
 
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        y0, dy = 500, 30
-        for i, line in enumerate(cmd.split('\n')):
-            y = y0 + i*dy
-            # cv2.putText(img, line, (10, y ), cv2.FONT_HERSHEY_SIMPLEX, 1, 2)
-            cv2.putText(bkg,line,(10,y), font, 0.8, (255,255,255),2)
+        bkg = scalePadVideo(img, scale)
+        bkg = drawBounds(bkg, rect, scale)
+        bkg = drawText(bkg, cmd)
+
         cv2.imshow('frame',bkg)
         # out.write(bkg)
 
@@ -262,7 +291,7 @@ def run(videofile, ws):
     cap.release()
     out.release()
 
-run('videofile', ws)
+run(videofile, ws)
 # static()
 cv2.destroyAllWindows()
 
