@@ -1,7 +1,14 @@
 {
-	"listen": {
-		"port": 13900
-	},
+	"listen": [
+		{
+			"port": 13900
+		}, {
+			"type": "websocket",
+			"port": 13901,
+			"key": "../certs/privkey.pem",
+			"cert": "../certs/fullchain.pem"
+		}
+	],
 	"verbose": true,
 	"nodes": ["default", "test"],
 	"bindings": [
