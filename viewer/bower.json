@@ -16,7 +16,5 @@
     "tests"
   ],
   "dependencies": {
-    "mathbox": "^0.0.5",
-    "c3": "^0.4.11"
   }
 }
