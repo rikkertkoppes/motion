@@ -4,28 +4,55 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <script src="bower_components/canvasjs/canvasjs.min.js"></script>
+    <script src="figures.js"></script>
     <style>
         html, body {
             margin: 0;
             padding: 0;
             height: 100%;
+            font-family: verdana, sans-serif;
+            font-size: 12px;
         }
         #graph {
             width: 100%;
             height: 100%;
         }
+        #legend {
+            position: absolute;
+            width: 150px;
+            bottom: 10px;
+            right: 4px;
+            top: 14px;
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+            color: grey;
+        }
+        #legend span {
+            flex: 1;
+        }
     </style>
 </head>
 <body>
     <div id="graph"></div>
+    <div id="legend"></div>
     <script>
 
-var dps = []; // dataPoints
+var dps = figures.map(f => ({
+    type:'line',
+    lineThickness: 1,
+    markerType: 'none',
+    dataPoints: []
+}))
+
+var l = document.getElementById('legend');
+figures.forEach(f => {
+    var s = document.createElement('span');
+    s.innerHTML = f;
+    l.insertBefore(s, l.firstChild);
+})
 
 var chart = new CanvasJS.Chart("graph",{
-    // title :{
-    //     text: "Live Tracking Data"
-    // },
     axisX: {
         valueFormatString:  " "
     },
@@ -57,14 +84,6 @@ ws.onmessage = function(frame) {
     var msg = JSON.parse(frame.data);
     if (msg.topic === 'data') {
         msg.data.forEach((v, i) => {
-            if (!dps[i]) {
-                dps[i] = {
-                    type:'line',
-                    lineThickness: 1,
-                    markerType: 'none',
-                    dataPoints: []
-                }
-            }
             dps[i].dataPoints.push({
                 x: xVal,
                 y: v.value + (100*i)
@@ -74,6 +93,11 @@ ws.onmessage = function(frame) {
             }
         });
         xVal += 1;
+    }
+    if (msg.topic === 'reset') {
+        dps.forEach(dp => {
+            dp.dataPoints = [];
+        })
     }
 };
 
